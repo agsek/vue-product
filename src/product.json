@@ -1,0 +1,98 @@
+[
+    {
+        "sku": "SA419-03X",
+        "photos": [],
+        "categoryUrl": "",
+        "price": "39,99",
+        "actualPrice": "24,99",
+        "description": "wzrost modelki: 177cm",
+        "comingSoon": false,
+        "color": {
+            "name": "Różowy",
+            "cssName": "pink",
+            "image": ""
+        },
+        "sizes": [
+            {
+                "name": "S",
+                "stock": 10
+            },
+            {
+                "name": "M",
+                "stock": 10
+            },
+            {
+                "name": "L",
+                "stock": 0
+            },
+            {
+                "name": "XL",
+                "stock": 10
+            }
+        ]
+    },
+    {
+        "sku": "SA419-00X",
+        "photos": [],
+        "categoryUrl": "",
+        "price": "29,99",
+        "actualPrice": "19,99",
+        "description": "wzrost modelki: 177cm",
+        "comingSoon": false,
+        "color": {
+            "name": "Biały",
+            "cssName": "white",
+            "image": ""
+        },
+        "sizes": [
+            {
+                "name": "S",
+                "stock": 10
+            },
+            {
+                "name": "M",
+                "stock": 10
+            },
+            {
+                "name": "L",
+                "stock": 10
+            },
+            {
+                "name": "XL",
+                "stock": 10
+            }
+        ]
+    },
+    {
+        "sku": "SA419-59X",
+        "photos": [],
+        "categoryUrl": "",
+        "price": "29,99",
+        "actualPrice": "19,99",
+        "description": "wzrost modelki: 177cm",
+        "comingSoon": false,
+        "color": {
+            "name": "Granatowy",
+            "cssName": "navy",
+            "image": ""
+        },
+        "sizes": [
+            {
+                "name": "S",
+                "stock": 0
+            },
+            {
+                "name": "M",
+                "stock": 0
+            },
+            {
+                "name": "L",
+                "stock": 0
+            },
+            {
+                "name": "XL",
+                "stock": 0
+            }
+        ]
+    }
+]

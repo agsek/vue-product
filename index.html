@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Bluzka z wiązaniem z boku</title>
+</head>
+<body>
+    <main id="app">
+        <figure>
+            <img src="" alt="" width="600" height="600">
+        </figure>
+        <article>
+            <nav>
+                <div>
+                    <a title="Wróć do kategorii">Wróć do kategorii</a>
+                </div>
+                <div>
+                    <a title="Poprzedni produkt">Poprzedni produkt</a>
+                    <a title="Następny produkt">Następny produkt</a>
+                </div>
+            </nav>
+            <header>
+                <h1>Bluzka z wiązaniem z boku</h1>
+                <h2 v-text="sku">SA419-03X</h2>
+            </header>
+            <section>
+                <p>
+                    <span>24,99</span>
+                    <span>PLN</span>
+                </p>
+                <p>
+                    <span>39,99</span>
+                    <span>PLN</span>
+                </p>
+                <p>wzrost modelki: 177cm</p>
+            </section>
+            <fieldset id="colors" data-model="SA419">
+                <legend>Kolor</legend>
+                <p>
+                    <a>
+                        <input name="color"
+                               type="radio"
+                               id="03X"
+                               checked
+                               @change="updateProductInfo">
+                        <label for="03X">Różowy</label>
+                    </a>
+                </p>
+                <p>
+                    <a>
+                        <input name="color"
+                               type="radio"
+                               id="00X"
+                               @change="updateProductInfo">
+                        <label for="00X">Biały</label>
+                    </a>
+                </p>
+                <p>
+                    <a>
+                        <input name="color"
+                               type="radio"
+                               id="59X"
+                               @change="updateProductInfo">
+                        <label for="59X">Granatowy</label>
+                    </a>
+                </p>
+            </fieldset>
+            <fieldset>
+                <legend>Rozmiar</legend>
+                <button type="button">Tabela rozmiarów</button>
+                <p>
+                    <input name="size" type="radio" id="size-S">
+                    <label for="size-S">S</label>
+                </p>
+                <p>
+                    <input name="size" type="radio" id="size-M">
+                    <label for="size-M">M</label>
+                </p>
+                <p>
+                    <input name="size" type="radio" id="size-L" disabled>
+                    <label for="size-L">L</label>
+                </p>
+                <p>
+                    <input name="size" type="radio" id="size-XL">
+                    <label for="size-XL">XL</label>
+                </p>
+            </fieldset>
+            <section>
+                <button type="button">Dodaj do koszyka</button>
+                <button type="button">Powiadom o dostępności</button>
+                <button type="button">Dodaj do listy życzeń</button>
+                <button type="button">Sprawdź dostępność w salonach</button>
+            </section>
+            <aside>
+                <details>
+                    <summary>Skład materiałowy</summary>
+                    <p>100% POLIESTER</p>
+                </details>
+                <details>
+                    <summary>Zwroty</summary>
+                    <p>Informacja o zwrotach</p>
+                </details>
+                <details>
+                    <summary>Dostawa</summary>
+                    <p>Informacja o dostawie</p>
+                </details>
+            </aside>
+        </article>
+    </main>
+    <script src="//unpkg.com/vue"></script>
+    <script src="src/app.js"></script>
+</body>
+</html>
