@@ -1,8 +1,12 @@
 [
     {
         "sku": "SA419-03X",
-        "photos": [],
-        "categoryUrl": "",
+        "photos": [
+            "http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-001.jpg",
+            "http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-002.jpg",
+            "http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-003.jpg"
+        ],
+        "categoryUrl": "/t-shirts",
         "price": "39,99",
         "actualPrice": "24,99",
         "description": "wzrost modelki: 177cm",
@@ -10,7 +14,7 @@
         "color": {
             "name": "Różowy",
             "cssName": "pink",
-            "image": ""
+            "image": "http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-999.jpg"
         },
         "sizes": [
             {
@@ -33,8 +37,12 @@
     },
     {
         "sku": "SA419-00X",
-        "photos": [],
-        "categoryUrl": "",
+        "photos": [
+            "http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-001.jpg",
+            "http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-002.jpg",
+            "http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-003.jpg"
+        ],
+        "categoryUrl": "/blouses",
         "price": "29,99",
         "actualPrice": "19,99",
         "description": "wzrost modelki: 177cm",
@@ -42,7 +50,7 @@
         "color": {
             "name": "Biały",
             "cssName": "white",
-            "image": ""
+            "image": "http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-999.jpg"
         },
         "sizes": [
             {
@@ -65,8 +73,13 @@
     },
     {
         "sku": "SA419-59X",
-        "photos": [],
-        "categoryUrl": "",
+        "photos": [
+            "http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-001.jpg",
+            "http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-002.jpg",
+            "http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-003.jpg",
+            "http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-004.jpg"
+        ],
+        "categoryUrl": "/t-shirts",
         "price": "29,99",
         "actualPrice": "19,99",
         "description": "wzrost modelki: 177cm",
@@ -74,7 +87,7 @@
         "color": {
             "name": "Granatowy",
             "cssName": "navy",
-            "image": ""
+            "image": "http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-999.jpg"
         },
         "sizes": [
             {
