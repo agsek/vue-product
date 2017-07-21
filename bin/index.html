@@ -3,16 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Bluzka z wiązaniem z boku</title>
+    <link rel="stylesheet" type="text/css" href="./styles/main.min.css">
 </head>
 <body>
     <main id="app">
         <figure>
-            <img src="{{ photo }}" alt="{{ productName }}" width="600" height="600">
+            <img src="http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-001.jpg"
+                 alt="Bluzka z wiązaniem z boku"
+                 width="600"
+                 height="600"
+                 :src="photos[currentPhoto]"
+                 :alt="productName">
+            <button @click="prevPhoto">Poprzednie</button>
+            <button @click="nextPhoto">Następne</button>
         </figure>
         <article>
             <nav>
                 <div>
-                    <a title="Wróć do kategorii">Wróć do kategorii</a>
+                    <a :href="categoryUrl" title="Wróć do kategorii">Wróć do kategorii</a>
                 </div>
                 <div>
                     <a title="Poprzedni produkt">Poprzedni produkt</a>
@@ -20,24 +28,25 @@
                 </div>
             </nav>
             <header>
-                <h1>Bluzka z wiązaniem z boku</h1>
-                <h2 v-text="sku">SA419-03X</h2>
+                <h1 id="productName">Bluzka z wiązaniem z boku</h1>
+                <h2 id="productSku" v-text="sku">SA419-03X</h2>
             </header>
             <section>
-                <p>
-                    <span>24,99</span>
+                <p v-if="newPrice">
+                    <span v-text="newPrice">24,99</span>
                     <span>PLN</span>
                 </p>
-                <p>
-                    <span>39,99</span>
+                <p :class="{ 'new-price': newPrice }">
+                    <span v-text="price">39,99</span>
                     <span>PLN</span>
                 </p>
-                <p>wzrost modelki: 177cm</p>
+                <p v-text="description">wzrost modelki: 177cm</p>
             </section>
             <fieldset id="colors" data-model="SA419">
                 <legend>Kolor</legend>
                 <p>
-                    <a>
+                    <a title="Różowy"
+                       style="background: pink url('http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-999.jpg');">
                         <input name="color"
                                type="radio"
                                id="03X"
@@ -47,7 +56,8 @@
                     </a>
                 </p>
                 <p>
-                    <a>
+                    <a title="Biały"
+                       style="background: white url('http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-999.jpg');">
                         <input name="color"
                                type="radio"
                                id="00X"
@@ -56,7 +66,8 @@
                     </a>
                 </p>
                 <p>
-                    <a>
+                    <a title="Granatowy"
+                       style="background: navy url('http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-999.jpg');">
                         <input name="color"
                                type="radio"
                                id="59X"
@@ -68,22 +79,33 @@
             <fieldset>
                 <legend>Rozmiar</legend>
                 <button type="button">Tabela rozmiarów</button>
-                <p>
-                    <input name="size" type="radio" id="size-S">
-                    <label for="size-S">S</label>
-                </p>
-                <p>
-                    <input name="size" type="radio" id="size-M">
-                    <label for="size-M">M</label>
-                </p>
-                <p>
-                    <input name="size" type="radio" id="size-L" disabled>
-                    <label for="size-L">L</label>
-                </p>
-                <p>
-                    <input name="size" type="radio" id="size-XL">
-                    <label for="size-XL">XL</label>
-                </p>
+                <template v-if="updated">
+                    <p v-for="size in sizes">
+                        <input name="size"
+                               type="radio"
+                               :id="'size-' + size.name"
+                               :disabled.prop="!size.stock">
+                        <label :for="'size-' + size.name">${ size.name }</label>
+                    </p>
+                </template>
+                <template v-else>
+                    <p>
+                        <input name="size" type="radio" id="size-S" disabled>
+                        <label for="size-S">S</label>
+                    </p>
+                    <p>
+                        <input name="size" type="radio" id="size-M">
+                        <label for="size-M">M</label>
+                    </p>
+                    <p>
+                        <input name="size" type="radio" id="size-L" disabled>
+                        <label for="size-L">L</label>
+                    </p>
+                    <p>
+                        <input name="size" type="radio" id="size-XL">
+                        <label for="size-XL">XL</label>
+                    </p>
+                </template>
             </fieldset>
             <section>
                 <button type="button">Dodaj do koszyka</button>
@@ -107,7 +129,7 @@
             </aside>
         </article>
     </main>
-    <script src="//unpkg.com/vue"></script>
-    <script src="src/app.js"></script>
+    <script src="https://unpkg.com/vue@2.4.2"></script>
+    <script src="./scripts/main.min.js"></script>
 </body>
 </html>
