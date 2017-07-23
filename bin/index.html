@@ -30,7 +30,7 @@
                            v-for="(photo, index) in photos"
                            :title="productName"
                            :value="index"
-                           :checked.prop="index === currentPhoto"
+                           :checked.prop="index == currentPhoto"
                            @change="selectPhoto">
                 </template>
                 <template v-else>

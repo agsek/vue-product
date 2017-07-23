@@ -57,7 +57,6 @@ new Vue({
             this.selectSliderControl();
         },
         selectPhoto: function (event) {
-            console.log(event.target.value)
             this.currentPhoto = event.target.value;
         },
         selectSliderControl: function () {
