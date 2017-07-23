@@ -1,0 +1,105 @@
+// sectioning content - article, aside, nav, section
+body {
+    font: $mainFontProperty;
+
+    & * {
+        font: inherit;
+
+        & + * {
+            margin-top: $standardRowGutters;
+        }
+    }
+}
+
+article,
+aside,
+nav,
+section {
+    // TODO: add :not
+    padding: 0 $standardColumnGutters;
+}
+
+// heading content – h1, h2, etc.
+
+// flow content – contains text or embedded content
+
+// phrasing content – defines the text and mark-up it contains
+
+// embedded content – audio, canvas, embed, iframe, img, math, object, svg, video
+figure img {
+    width: 100%;
+    height: auto;
+}
+
+// interactive content – elements that are specifically designed for user interaction
+.btn { // prototype
+    cursor: pointer;
+    display: block;
+    font-size: 1.2rem;
+    padding: $standardElementPadding;
+    text-align: center;
+    appearance: none;
+    width: 100%;
+
+    &[class*="icon-"] {
+        position: relative;
+
+        &:after {
+            @include centerAbsoluteElement(0, $iconsOnButtonsSize * .25, 0);
+            position: absolute;
+            width: $iconsOnButtonsSize;
+            height: $iconsOnButtonsSize;
+            content: '';
+        }
+    }
+
+    &:empty {
+        padding: 0;
+        width: $emptyButtonSize;
+        height: $emptyButtonSize;
+        display: inline-block;
+        margin: 0;
+    }
+}
+
+@each $iconName in $allIconsOnButtons {
+    .icon-#{$iconName}:after {
+        background: url($pathToSvg + $iconName + '.svg') center right/contain no-repeat;
+    }
+}
+
+.btn-default {
+    @extend .btn;
+    background-color: $buttonDefaultBackgroundColor;
+    box-shadow: 0 0 0 1px $mainBorderColor;
+    // TODO: check :empty compatibility
+    &:empty {
+        background-color: $buttonEmptyBackgroundColor;
+
+        &:after {
+            @include centerAbsoluteElement(0, 0, 0, 0);
+            width: $iconsOnEmptyButtonsSize;
+            height: $iconsOnEmptyButtonsSize;
+        }
+    }
+}
+
+.slider-control {
+    @extend .btn;
+    background-color: $sliderControlInactive;
+
+    & + & {
+        margin-left: $emptyButtonSize / 2;
+    }
+
+    &:checked {
+        background-color: $sliderControlActive;
+    }
+}
+
+a[href] {
+    color: $standardLinkColor;
+    text-decoration: none;
+}
+
+// form-associated content

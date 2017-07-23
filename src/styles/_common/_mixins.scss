@@ -1,0 +1,7 @@
+@mixin centerAbsoluteElement($top: initial, $right: initial, $bottom: initial, $left: initial) {
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+    margin: auto;
+}

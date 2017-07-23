@@ -1,6 +1,6 @@
 /*!
  * gulp
- * $ npm install gulp gulp-sass gulp-autoprefixer gulp-cssnano gulp-rename gulp-notify del --save-dev
+ * $ npm install gulp gulp-sass gulp-autoprefixer gulp-cssnano gulp-rename gulp-notify del gulp-concat gulp-uglify --save-dev
  */
 // Load plugins
 var gulp = require('gulp'), // gulp main module
@@ -29,9 +29,9 @@ gulp.task('styles', function () {
                 outputStyle: 'compressed',
                 precision: 10
             })
-                .on('error', notify.onError(function (error) {
-                    return 'Error spotted! ' + error
-                }))
+            .on('error', notify.onError(function (error) {
+                return 'Error spotted! ' + error
+            }))
         )
         .pipe(autoprefixer('last 2 version'))
         .pipe(gulp.dest(pathToBinStyles))
@@ -80,5 +80,6 @@ gulp.task('default', ['clean'], function () {
 // Watch
 gulp.task('watch', function () {
     // Watch .scss files
-    gulp.watch(pathToStyles + '/**/*.scss', ['styles'])
+    gulp.watch(pathToStyles + '/**/*.scss', ['styles']),
+    gulp.watch(pathToScripts + '/**/*.js', ['scripts'])
 });

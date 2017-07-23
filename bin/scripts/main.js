@@ -36,6 +36,7 @@ new Vue({
         updateProductInfo: function (event) {
             this.updated = true;
             this.sku = this.model + '-' + event.target.id;
+            this.currentPhoto = 0;
         },
         prevPhoto: function () {
             if (this.currentPhoto > 0) {
@@ -43,6 +44,8 @@ new Vue({
             } else {
                 this.currentPhoto = this.photos.length - 1;
             }
+
+            this.selectSliderControl();
         },
         nextPhoto: function () {
             if (this.currentPhoto < this.photos.length - 1) {
@@ -50,6 +53,17 @@ new Vue({
             } else {
                 this.currentPhoto = 0;
             }
+
+            this.selectSliderControl();
+        },
+        selectPhoto: function (event) {
+            console.log(event.target.value)
+            this.currentPhoto = event.target.value;
+        },
+        selectSliderControl: function () {
+            document.getElementById('sliderControls')
+                .querySelector('[value="' + this.currentPhoto + '"]')
+                .checked = 'checked';
         }
     }
 });

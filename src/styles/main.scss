@@ -1,5 +1,24 @@
-$red: #ff0000;
+@import "_common/reset";
 
-body {
-    background-color: white;
-}
+// Variables
+@import "_variables/paths";
+@import "_variables/layout";
+@import "_variables/fonts";
+@import "_variables/colors";
+@import "_variables/icons";
+
+// Mixins and functions
+@import "_common/mixins";
+
+// Global styles
+@import "_common/global";
+
+// Modules
+// @import "_modules/header";
+// @import "_modules/menu";
+// @import "_modules/menuMobile";
+// @import "_modules/miniCar";
+// @import "_modules/footer";
+
+// Views
+@import "_views/product";

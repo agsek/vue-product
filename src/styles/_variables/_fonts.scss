@@ -1,0 +1,12 @@
+@font-face {
+    font-family: din;
+    src: url(../fonts/DINWebPro.eot);
+    src: url(../fonts/DINWebPro.eot?#iefix) format('embedded-opentype'),
+         url(../fonts/DINWebPro.woff) format('woff'),
+         url(../fonts/DINCompPro.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+$mainFontFamily: din, Arial, Helvetica, 'Helvetica Neue', sans-serif;
+$mainFontProperty: 1rem/1.6 $mainFontFamily;

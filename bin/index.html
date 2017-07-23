@@ -5,22 +5,65 @@
     <title>Bluzka z wiązaniem z boku</title>
     <link rel="stylesheet" type="text/css" href="./styles/main.min.css">
 </head>
-<body>
+<body class="product-page">
     <main id="app">
-        <figure>
-            <img src="http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-001.jpg"
-                 alt="Bluzka z wiązaniem z boku"
-                 width="600"
-                 height="600"
-                 :src="photos[currentPhoto]"
-                 :alt="productName">
-            <button @click="prevPhoto">Poprzednie</button>
-            <button @click="nextPhoto">Następne</button>
-        </figure>
+        <article class="no-gutters">
+            <figure class="product-photo">
+                <img src="http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-001.jpg"
+                     alt="Bluzka z wiązaniem z boku"
+                     width="800"
+                     height="800"
+                     :src="photos[currentPhoto]"
+                     :alt="productName">
+                <!--<button class="prev-photo"-->
+                        <!--title="Poprzednie zdjęcie"-->
+                        <!--@click="prevPhoto">Poprzednie</button>-->
+                <!--<button class="next-photo"-->
+                        <!--@click="nextPhoto">Następne</button>-->
+            </figure>
+            <fieldset id="sliderControls"
+                      class="slider-control-wrapper">
+                <template v-if="updated">
+                    <input type="radio"
+                           name="product-photo"
+                           class="slider-control"
+                           v-for="(photo, index) in photos"
+                           :title="productName"
+                           :value="index"
+                           :checked.prop="index === currentPhoto"
+                           @change="selectPhoto">
+                </template>
+                <template v-else>
+                    <input type="radio"
+                           name="product-photo"
+                           class="slider-control"
+                           title="Bluzka z wiązaniem z boku"
+                           value="0"
+                           checked
+                           @change="selectPhoto">
+                    <input type="radio"
+                           name="product-photo"
+                           class="slider-control"
+                           title="Bluzka z wiązaniem z boku"
+                           value="1"
+                           @change="selectPhoto">
+                    <input type="radio"
+                           name="product-photo"
+                           class="slider-control"
+                           title="Bluzka z wiązaniem z boku"
+                           value="2"
+                           @change="selectPhoto">
+                </template>
+                <button class="btn-default slider-control icon-zoom"></button>
+            </fieldset>
+        </article>
         <article>
             <nav>
                 <div>
-                    <a :href="categoryUrl" title="Wróć do kategorii">Wróć do kategorii</a>
+                    <a href="/t-shirts"
+                       class="back-to-category"
+                       title="Wróć do kategorii"
+                       :href="categoryUrl">Wróć do kategorii</a>
                 </div>
                 <div>
                     <a title="Poprzedni produkt">Poprzedni produkt</a>
@@ -108,7 +151,8 @@
                 </template>
             </fieldset>
             <section>
-                <button type="button">Dodaj do koszyka</button>
+                <button type="button"
+                        class="btn-default icon-bag">Dodaj do koszyka</button>
                 <button type="button">Powiadom o dostępności</button>
                 <button type="button">Dodaj do listy życzeń</button>
                 <button type="button">Sprawdź dostępność w salonach</button>
