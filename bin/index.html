@@ -87,75 +87,78 @@
             </section>
             <fieldset id="colors" data-model="SA419">
                 <legend>Kolor</legend>
-                <p>
-                    <a title="Różowy"
-                       style="background: pink url('http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-999.jpg');">
-                        <input name="color"
-                               type="radio"
-                               id="03X"
-                               checked
-                               @change="updateProductInfo">
-                        <label for="03X">Różowy</label>
-                    </a>
-                </p>
-                <p>
-                    <a title="Biały"
-                       style="background: white url('http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-999.jpg');">
-                        <input name="color"
-                               type="radio"
-                               id="00X"
-                               @change="updateProductInfo">
-                        <label for="00X">Biały</label>
-                    </a>
-                </p>
-                <p>
-                    <a title="Granatowy"
-                       style="background: navy url('http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-999.jpg');">
-                        <input name="color"
-                               type="radio"
-                               id="59X"
-                               @change="updateProductInfo">
-                        <label for="59X">Granatowy</label>
-                    </a>
-                </p>
+                <input name="color"
+                       class="btn-default"
+                       type="radio"
+                       title="Różowy"
+                       id="03X"
+                       checked
+                       style="background: pink url('http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-999.jpg');"
+                       @change="updateProductInfo">
+                <input name="color"
+                       class="btn-default"
+                       type="radio"
+                       title="Biały"
+                       id="00X"
+                       style="background: white url('http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-999.jpg');"
+                       @change="updateProductInfo">
+                <input name="color"
+                       class="btn-default"
+                       type="radio"
+                       title="Granatowy"
+                       id="59X"
+                       style="background: navy url('http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-999.jpg');"
+                       @change="updateProductInfo">
             </fieldset>
             <fieldset>
                 <legend>Rozmiar</legend>
-                <button type="button">Tabela rozmiarów</button>
-                <template v-if="updated">
-                    <p v-for="size in sizes">
+                <button type="button"
+                        class="btn-default">Tabela rozmiarów</button>
+                <div>
+                    <template v-if="updated">
                         <input name="size"
+                               class="btn-default with-label"
                                type="radio"
+                               v-for="size in sizes"
+                               :title="size.name"
                                :id="'size-' + size.name"
                                :disabled.prop="!size.stock">
-                        <label :for="'size-' + size.name">${ size.name }</label>
-                    </p>
-                </template>
-                <template v-else>
-                    <p>
-                        <input name="size" type="radio" id="size-S" disabled>
-                        <label for="size-S">S</label>
-                    </p>
-                    <p>
-                        <input name="size" type="radio" id="size-M">
-                        <label for="size-M">M</label>
-                    </p>
-                    <p>
-                        <input name="size" type="radio" id="size-L" disabled>
-                        <label for="size-L">L</label>
-                    </p>
-                    <p>
-                        <input name="size" type="radio" id="size-XL">
-                        <label for="size-XL">XL</label>
-                    </p>
-                </template>
+                    </template>
+                    <template v-else>
+                        <input name="size"
+                               class="btn-default with-label"
+                               type="radio"
+                               title="S"
+                               id="size-S"
+                               disabled>
+                        <input name="size"
+                               class="btn-default with-label"
+                               type="radio"
+                               title="M"
+                               id="size-M">
+                        <input name="size"
+                               class="btn-default with-label"
+                               type="radio"
+                               title="L"
+                               id="size-L"
+                               disabled>
+                        <input name="size"
+                               class="btn-default with-label"
+                               type="radio"
+                               title="XL"
+                               id="size-XL">
+                    </template>
+                </div>
             </fieldset>
             <section>
                 <button type="button"
                         class="btn-default icon-bag">Dodaj do koszyka</button>
-                <button type="button">Powiadom o dostępności</button>
-                <button type="button">Dodaj do listy życzeń</button>
-                <button type="button">Sprawdź dostępność w salonach</button>
+                <button type="button"
+                        class="btn-default">Powiadom o dostępności</button>
+                <button type="button"
+                        class="btn-default">Dodaj do listy życzeń</button>
+                <button type="button"
+                        class="btn-default">Sprawdź dostępność w salonach</button>
             </section>
             <aside>
                 <details>

@@ -2,7 +2,7 @@
 $mainHeaderHeightMobile: 50px;
 $emptyButtonSize: 1.5rem;
 $iconsOnButtonsSize: 1.5rem;
-$iconsOnEmptyButtonsSize: 75%;
+$iconsOnEmptyButtonsSize: $iconsOnButtonsSize * .75;
 
 //spacing
 $standardColumnGutters: 1rem;
