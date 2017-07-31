@@ -1,2 +1,15 @@
+/**
+ * The relative path to the image assets folder.
+ *
+ * @nuclide Image-Folder
+ * @section Config > Paths
+ */
 $pathToImages: '../images/';
+
+/**
+ * The relative path to the SVG assets folder.
+ *
+ * @nuclide Image-Folder
+ * @section Config > Paths
+ */
 $pathToSvg: $pathToImages + 'svg/';

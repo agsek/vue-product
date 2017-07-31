@@ -12,6 +12,7 @@ var gulp = require('gulp'), // gulp main module
     del = require('del'), // deletes files
     concat = require('gulp-concat'), // adds files and creates one huge file either CSS or JS
     uglify = require('gulp-uglify'), // minifies JS
+    kss = require('kss'), // generates styleguide
 
     // Paths
     pathToStyles = './src/styles/',
@@ -40,6 +41,19 @@ gulp.task('styles', function () {
         }))
         .pipe(cssnano())
         .pipe(gulp.dest(pathToBinStyles))
+});
+
+// Styleguide
+gulp.task('styleguide', function () {
+    return kss({
+        title: 'Title of the Style Guide',
+        source: 'src/styles/',
+        destination: 'bin/kss/',
+        css: [
+            '../styles/main.min.css'
+        ],
+        homepage: 'homepage.md'
+    });
 });
 
 // Scripts
@@ -74,12 +88,12 @@ gulp.task('clean', function () {
 
 // Default task
 gulp.task('default', ['clean'], function () {
-    gulp.start('styles', 'scripts')
+    gulp.start('styles', 'scripts', 'styleguide')
 });
 
 // Watch
 gulp.task('watch', function () {
     // Watch .scss files
-    gulp.watch(pathToStyles + '/**/*.scss', ['styles']),
+    gulp.watch(pathToStyles + '/**/*.scss', ['styles', 'styleguide'])
     gulp.watch(pathToScripts + '/**/*.js', ['scripts'])
 });

@@ -1,13 +1,9 @@
 // sectioning content - article, aside, nav, section
-body {
+body:not(.SG-page) {
     font: $mainFontProperty;
 
-    & * {
-        font: inherit;
-
-        & + * {
-            margin-top: $standardRowGutters;
-        }
+    & * + * {
+        margin-top: $standardRowGutters;
     }
 }
 
@@ -15,7 +11,6 @@ article,
 aside,
 nav,
 section {
-    // TODO: add :not
     &:not(.no-gutters) {
         padding: 0 $standardColumnGutters;
     }
@@ -34,6 +29,36 @@ figure img {
 }
 
 // interactive content – elements that are specifically designed for user interaction
+
+
+/**
+ * @atom Button
+ * @modifiers
+ *  .btn-default for use in positive flows
+ *  .btn-default.icon-zoom for use in alternative flows
+ *  .slider-control
+ * @markup
+ *  <button class="btn-default">Button element</button>
+ *  <button class="btn-default icon-zoom">Button element</button>
+ *  <button class="btn-default icon-zoom"></button>
+ *  <input class="btn-default" type="radio">
+ *  <input class="btn-default icon-zoom" type="radio">
+ *  <input class="btn-default with-label" title="S" type="radio">
+ *  <input class="btn-default" type="radio">
+ */
+
+// Buttons
+//
+// Various button styles.
+//
+// Markup:
+// <button class="{{modifier_class}}">Button Element</button>
+// <button class="{{modifier_class}}"></button>
+//
+// .btn-default - When user hovers over button.
+// .btn-default.icon-zoom - When user hovers over button.
+//
+// Styleguide Components.button
 .btn { // prototype
     cursor: pointer;
     display: block;
@@ -44,6 +69,7 @@ figure img {
 
     &[class*="icon-"] {
         position: relative;
+        background: center right/contain no-repeat;
 
         &:after {
             @include centerAbsoluteElement(0, $iconsOnButtonsSize * .25, 0);
@@ -54,28 +80,28 @@ figure img {
         }
     }
 
-    &[class*="with-label"] {
-        position: relative;
-        width: auto;
-        min-width: $emptyButtonSize;
-
-        &:after {
-            @include centerAbsoluteElement(0, 0, 0, 0);
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            content: attr(title);
-            line-height: $iconsOnEmptyButtonsSize;
-            font-size: $smallFontSize;
-        }
-    }
-
     &:empty {
         padding: 0;
         width: $emptyButtonSize;
         height: $emptyButtonSize;
         display: inline-block;
         margin: 0;
+
+        &[class*="with-label"] {
+            position: relative;
+            width: auto;
+            min-width: $emptyButtonSize;
+
+            &:after {
+                @include centerAbsoluteElement(0, 0, 0, 0);
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                content: attr(title);
+                line-height: $iconsOnEmptyButtonsSize;
+                font-size: $smallFontSize;
+            }
+        }
 
         & + & {
             margin-left: $emptyButtonSize / 2;
@@ -85,7 +111,7 @@ figure img {
 
 @each $iconName in $allIconsOnButtons {
     .icon-#{$iconName}:after {
-        background: url($pathToSvg + $iconName + '.svg') center right/contain no-repeat;
+        background-image: url($pathToSvg + $iconName + '.svg');
     }
 }
 

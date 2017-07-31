@@ -1,5 +1,12 @@
+import Vue from 'vue'
+import Vuex from 'vuex'
+import store from './store'
+
+Vue.use(Vuex);
+
 new Vue({
     el: '#app',
+    store,
     delimiters: ['${', '}'],
     data: {
         data: JSON.parse('[{"SA419-03X":{"photos":["http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-001.jpg","http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-002.jpg","http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-003.jpg"],"categoryUrl":"/t-shirts","price":"39,99","newPrice":"24,99","description":"wzrost modelki: 177cm","comingSoon":false,"sizes":[{"name":"S","stock":0},{"name":"M","stock":10},{"name":"L","stock":0},{"name":"XL","stock":10}]},"SA419-00X":{"photos":["http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-001.jpg","http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-002.jpg","http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-003.jpg"],"categoryUrl":"/blouses","price":"29,99","newPrice":"19,99","description":"wzrost modelki: 176cm","comingSoon":false,"sizes":[{"name":"S","stock":10},{"name":"M","stock":10},{"name":"L","stock":10},{"name":"XL","stock":10}]},"SA419-59X":{"photos":["http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-001.jpg","http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-002.jpg","http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-003.jpg","http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-004.jpg"],"categoryUrl":"/t-shirts","price":"29,99","newPrice":null,"description":"wzrost modelki: 175cm","comingSoon":false,"sizes":[{"name":"S","stock":0},{"name":"M","stock":0},{"name":"L","stock":0},{"name":"XL","stock":0}]}}]'),
