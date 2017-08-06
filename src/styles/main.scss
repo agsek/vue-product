@@ -11,6 +11,7 @@
 @import "_common/mixins";
 
 // Global styles
+@import "_global/buttons";
 @import "_common/global";
 
 // Modules
@@ -19,6 +20,8 @@
 // @import "_modules/menuMobile";
 // @import "_modules/miniCar";
 // @import "_modules/footer";
+@import "_modules/slider";
+@import "_modules/product";
 
 // Views
 @import "_views/product";

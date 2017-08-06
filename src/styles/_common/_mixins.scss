@@ -5,3 +5,9 @@
     left: $left;
     margin: auto;
 }
+
+@mixin flex-wrapper() {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

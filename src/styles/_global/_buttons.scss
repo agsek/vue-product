@@ -1,0 +1,115 @@
+/**
+ * Buttons
+ *
+ * Various button styles.
+ * Note: Input type=button and type=submit are considered deprecated.
+ *
+ * Styleguide Components.buttons
+ */
+%btn {
+    cursor: pointer;
+    padding: $standardElementPadding;
+    display: inline-flex;
+    text-align: center;
+    appearance: none;
+    width: 100%;
+    margin: $standardElementMarginVertical 0;
+
+    @media screen and (min-width: 500px) {
+        width: auto;
+    }
+}
+
+/**
+ * Default
+ *
+ * Default button styles for class .btn-default, extends .btn class.
+ *
+ * Markup:
+ * <button class="btn--default {{modifier_class}}">button</button>
+ * <a class="btn--default {{modifier_class}}">anchor</a>
+ *
+ * .btn--full-width - button adjusting to width of it's parent, designed to use with other class (eg.: .btn--default)
+ * .btn__icon.icon__heart - button with an icon (eg.: .icon__heart)
+ *
+ * Styleguide Components.buttons.default
+ */
+.btn--default {
+    @extend %btn;
+    background-color: $buttonDefaultBackgroundColor;
+    box-shadow: 0 0 0 1px $mainBorderColor;
+    display: block;
+}
+
+.btn--full-width {
+    width: 100%;
+    margin: $standardElementMarginVertical 0;
+}
+
+.btn__icon {
+    position: relative;
+    &:not(.btn--empty) {
+        padding-right: $buttonWithIconSidePadding;
+    }
+
+    &:after {
+        @include centerAbsoluteElement(0, $iconOnButtonDistanceFromEdge, 0);
+        position: absolute;
+        background: center center/contain no-repeat;
+        width: $iconOnButtonSize;
+        height: $iconOnButtonSize;
+        content: '';
+    }
+
+    &:empty:after {
+        @include centerAbsoluteElement(0, 0, 0, 0);
+        width: $iconOnEmptyButtonSize;
+        height: $iconOnEmptyButtonSize;
+    }
+}
+
+/**
+ * Empty
+ *
+ * Styles for button with class .btn--empty, is used by empty buttons
+ * (with no content) or input radios, like slider controls or size pickers.
+ *
+ * Markup:
+ * <button class="btn--empty {{modifier_class}}"></button>
+ * <a class="btn--empty {{modifier_class}}"></a>
+ * <input type="radio" class="btn--empty {{modifier_class}}">
+ *
+ * .btn__icon.icon__heart - button with an icon (eg.: .icon__heart)
+ *
+ * Styleguide Components.buttons.empty
+ */
+.btn--empty,
+%btn--empty {
+    @extend %btn;
+    box-shadow: 0 0 0 1px $mainBorderColor;
+    font-size: 1.7em;
+    width: $buttonEmptySize;
+    height: $buttonEmptySize;
+    margin: $standardElementMargin;
+    background-color: $buttonEmptyBackgroundColor;
+
+    &:first-child {
+        margin-left: 0;
+    }
+}
+
+%btn__arrow {
+    font-size: $fontSizeSmall;
+    text-transform: uppercase;
+}
+
+.btn__arrow-prev {
+    @extend %btn__arrow;
+    padding-left: 20px;
+    background: url('../images/arrow-back.png') left center no-repeat;
+}
+.btn__arrow-next {
+    @extend %btn__arrow;
+    padding-right: 20px;
+    background: url('../images/arrow-next.png') right center no-repeat;
+}

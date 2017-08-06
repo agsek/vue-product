@@ -1,0 +1,17 @@
+$sliderControlFontSize: 1.2rem;
+
+.slider__control-wrapper {
+    @include flex-wrapper();
+    button {
+        font-size: $sliderControlFontSize;
+    }
+}
+.slider__control-button {
+    @extend %btn--empty;
+    font-size: $sliderControlFontSize;
+    background-color: $sliderControlInactive;
+
+    &:checked {
+        background-color: $sliderControlActive;
+    }
+}

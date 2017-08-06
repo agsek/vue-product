@@ -1,10 +1,41 @@
-export const cartProducts = state => {
-    return state.cart.added.map(({ id, quantity }) => {
-        const product = state.products.all.find(p => p.id === id)
-        return {
-            title: product.title,
-            price: product.price,
-            quantity
-        }
-    })
+export default {
+    getModel(state) {
+        return state.product.sku.split('-')[0]
+    },
+    getSku(state) {
+        return state.product.sku
+    },
+    getName(state) {
+        return state.product.name
+    },
+    getCurrentPhoto(state) {
+        return state.product.currentPhoto
+    },
+    isUpdated(state) {
+        return state.product.isUpdated
+    },
+    getPhotos(state) {
+        return state.product.photos
+    },
+    getCategoryUrl(state) {
+        return state.product.categoryUrl
+    },
+    getStandardPrice(state) {
+        return state.product.standardPrice
+    },
+    getActualPrice(state) {
+        return state.product.actualPrice
+    },
+    getDescription(state) {
+        return state.product.description
+    },
+    getComingSoon(state) {
+        return state.product.comingSoon
+    },
+    getSizes(state) {
+        return state.product.sizes
+    },
+    hasDiscount(state) {
+        return parseInt(state.product.actualPrice) !== parseInt(state.product.standardPrice)
+    }
 }

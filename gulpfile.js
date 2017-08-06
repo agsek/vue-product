@@ -49,6 +49,7 @@ gulp.task('styleguide', function () {
         title: 'Title of the Style Guide',
         source: 'src/styles/',
         destination: 'bin/kss/',
+        builder: 'node_modules/michelangelo/kss_styleguide/custom-template/',
         css: [
             '../styles/main.min.css'
         ],
@@ -87,7 +88,7 @@ gulp.task('clean', function () {
 });
 
 // Default task
-gulp.task('default', ['clean'], function () {
+gulp.task('default', function () {
     gulp.start('styles', 'scripts', 'styleguide')
 });
 

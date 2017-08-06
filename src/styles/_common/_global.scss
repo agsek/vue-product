@@ -1,143 +1,15 @@
-// sectioning content - article, aside, nav, section
-body:not(.SG-page) {
+body {
     font: $mainFontProperty;
-
-    & * + * {
-        margin-top: $standardRowGutters;
-    }
+    color: $mainTextColor;
 }
 
-article,
-aside,
-nav,
-section {
-    &:not(.no-gutters) {
-        padding: 0 $standardColumnGutters;
-    }
+main {
+    padding-top: $mainHeaderHeightMobile;
 }
 
-// heading content – h1, h2, etc.
-
-// flow content – contains text or embedded content
-
-// phrasing content – defines the text and mark-up it contains
-
-// embedded content – audio, canvas, embed, iframe, img, math, object, svg, video
 figure img {
     width: 100%;
     height: auto;
-}
-
-// interactive content – elements that are specifically designed for user interaction
-
-
-/**
- * @atom Button
- * @modifiers
- *  .btn-default for use in positive flows
- *  .btn-default.icon-zoom for use in alternative flows
- *  .slider-control
- * @markup
- *  <button class="btn-default">Button element</button>
- *  <button class="btn-default icon-zoom">Button element</button>
- *  <button class="btn-default icon-zoom"></button>
- *  <input class="btn-default" type="radio">
- *  <input class="btn-default icon-zoom" type="radio">
- *  <input class="btn-default with-label" title="S" type="radio">
- *  <input class="btn-default" type="radio">
- */
-
-// Buttons
-//
-// Various button styles.
-//
-// Markup:
-// <button class="{{modifier_class}}">Button Element</button>
-// <button class="{{modifier_class}}"></button>
-//
-// .btn-default - When user hovers over button.
-// .btn-default.icon-zoom - When user hovers over button.
-//
-// Styleguide Components.button
-.btn { // prototype
-    cursor: pointer;
-    display: block;
-    padding: $standardElementPadding;
-    text-align: center;
-    appearance: none;
-    width: 100%;
-
-    &[class*="icon-"] {
-        position: relative;
-        background: center right/contain no-repeat;
-
-        &:after {
-            @include centerAbsoluteElement(0, $iconsOnButtonsSize * .25, 0);
-            position: absolute;
-            width: $iconsOnButtonsSize;
-            height: $iconsOnButtonsSize;
-            content: '';
-        }
-    }
-
-    &:empty {
-        padding: 0;
-        width: $emptyButtonSize;
-        height: $emptyButtonSize;
-        display: inline-block;
-        margin: 0;
-
-        &[class*="with-label"] {
-            position: relative;
-            width: auto;
-            min-width: $emptyButtonSize;
-
-            &:after {
-                @include centerAbsoluteElement(0, 0, 0, 0);
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                content: attr(title);
-                line-height: $iconsOnEmptyButtonsSize;
-                font-size: $smallFontSize;
-            }
-        }
-
-        & + & {
-            margin-left: $emptyButtonSize / 2;
-        }
-    }
-}
-
-@each $iconName in $allIconsOnButtons {
-    .icon-#{$iconName}:after {
-        background-image: url($pathToSvg + $iconName + '.svg');
-    }
-}
-
-.btn-default {
-    @extend .btn;
-    background-color: $buttonDefaultBackgroundColor;
-    box-shadow: 0 0 0 1px $mainBorderColor;
-    // TODO: check :empty compatibility
-    &:empty {
-        background-color: $buttonEmptyBackgroundColor;
-
-        &:after {
-            @include centerAbsoluteElement(0, 0, 0, 0);
-            width: $iconsOnEmptyButtonsSize;
-            height: $iconsOnEmptyButtonsSize;
-        }
-    }
-}
-
-.slider-control {
-    @extend .btn;
-    background-color: $sliderControlInactive;
-
-    &:checked {
-        background-color: $sliderControlActive;
-    }
 }
 
 a[href] {
@@ -145,4 +17,14 @@ a[href] {
     text-decoration: none;
 }
 
-// form-associated content
+@each $iconName in $allSvgIcons {
+    .icon__#{$iconName}:after {
+        background-image: url($pathToSvg + $iconName + '.svg');
+    }
+}
+
+@each $iconName in $allPngIcons {
+    .icon__#{$iconName}:after {
+        background-image: url($pathToImages + $iconName + '.png');
+    }
+}

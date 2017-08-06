@@ -10973,82 +10973,42 @@ var _vue = __webpack_require__(0);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _vuex = __webpack_require__(1);
-
-var _vuex2 = _interopRequireDefault(_vuex);
-
 var _store = __webpack_require__(4);
 
-var _store2 = _interopRequireDefault(_store);
+var _vuex = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_vue2.default.use(_vuex2.default);
+//import '../styles/main.scss'
 
 new _vue2.default({
     el: '#app',
-    store: _store2.default,
+    store: _store.store,
     delimiters: ['${', '}'],
-    data: {
-        data: JSON.parse('[{"SA419-03X":{"photos":["http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-001.jpg","http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-002.jpg","http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-003.jpg"],"categoryUrl":"/t-shirts","price":"39,99","newPrice":"24,99","description":"wzrost modelki: 177cm","comingSoon":false,"sizes":[{"name":"S","stock":0},{"name":"M","stock":10},{"name":"L","stock":0},{"name":"XL","stock":10}]},"SA419-00X":{"photos":["http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-001.jpg","http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-002.jpg","http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-003.jpg"],"categoryUrl":"/blouses","price":"29,99","newPrice":"19,99","description":"wzrost modelki: 176cm","comingSoon":false,"sizes":[{"name":"S","stock":10},{"name":"M","stock":10},{"name":"L","stock":10},{"name":"XL","stock":10}]},"SA419-59X":{"photos":["http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-001.jpg","http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-002.jpg","http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-003.jpg","http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-004.jpg"],"categoryUrl":"/t-shirts","price":"29,99","newPrice":null,"description":"wzrost modelki: 175cm","comingSoon":false,"sizes":[{"name":"S","stock":0},{"name":"M","stock":0},{"name":"L","stock":0},{"name":"XL","stock":0}]}}]'),
-        model: document.getElementById('colors').dataset.model,
-        productName: document.getElementById('productName').innerText,
-        sku: document.getElementById('productSku').innerText,
-        currentPhoto: 0,
-        updated: false
-    },
-    computed: {
-        photos: function photos() {
-            return this.data[0][this.sku].photos;
-        },
-        categoryUrl: function categoryUrl() {
-            return this.data[0][this.sku].categoryUrl;
-        },
-        price: function price() {
-            return this.data[0][this.sku].price;
-        },
-        newPrice: function newPrice() {
-            return this.data[0][this.sku].newPrice;
-        },
-        description: function description() {
-            return this.data[0][this.sku].description;
-        },
-        comingSoon: function comingSoon() {
-            return this.data[0][this.sku].comingSoon;
-        },
-        sizes: function sizes() {
-            return this.data[0][this.sku].sizes;
-        }
-    },
+    computed: (0, _vuex.mapGetters)({
+        model: 'getModel',
+        sku: 'getSku',
+        productName: 'getName',
+        currentPhoto: 'getCurrentPhoto',
+        updated: 'isUpdated',
+        photos: 'getPhotos',
+        categoryUrl: 'getCategoryUrl',
+        standardPrice: 'getStandardPrice',
+        actualPrice: 'getActualPrice',
+        description: 'getDescription',
+        comingSoon: 'getComingSoon',
+        sizes: 'getSizes',
+        hasDiscount: 'hasDiscount'
+    }),
     methods: {
         updateProductInfo: function updateProductInfo(event) {
-            this.updated = true;
-            this.sku = this.model + '-' + event.target.id;
-            this.currentPhoto = 0;
-        },
-        prevPhoto: function prevPhoto() {
-            if (this.currentPhoto > 0) {
-                this.currentPhoto--;
-            } else {
-                this.currentPhoto = this.photos.length - 1;
-            }
-
-            this.selectSliderControl();
-        },
-        nextPhoto: function nextPhoto() {
-            if (this.currentPhoto < this.photos.length - 1) {
-                this.currentPhoto++;
-            } else {
-                this.currentPhoto = 0;
-            }
-
-            this.selectSliderControl();
+            _store.store.commit('update', this.model + '-' + event.target.id);
         },
         selectPhoto: function selectPhoto(event) {
-            this.currentPhoto = event.target.value;
+            _store.store.commit('selectPhoto', event.target.value);
         },
-        selectSliderControl: function selectSliderControl() {
-            document.getElementById('sliderControls').querySelector('[value="' + this.currentPhoto + '"]').checked = 'checked';
+        selectSize: function selectSize(event) {
+            _store.store.commit('selectSize', event);
         }
     }
 });
@@ -11090,6 +11050,7 @@ module.exports = g;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.store = undefined;
 
 var _vue = __webpack_require__(0);
 
@@ -11099,26 +11060,139 @@ var _vuex = __webpack_require__(1);
 
 var _vuex2 = _interopRequireDefault(_vuex);
 
-var _actions = __webpack_require__(6);
+var _getters = __webpack_require__(6);
 
-var actions = _interopRequireWildcard(_actions);
+var _getters2 = _interopRequireDefault(_getters);
 
-var _getters = __webpack_require__(8);
+var _mutations = __webpack_require__(7);
 
-var getters = _interopRequireWildcard(_getters);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+var _mutations2 = _interopRequireDefault(_mutations);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.use(_vuex2.default);
 
-var debug = process.env.NODE_ENV !== 'production';
+var DEBUG = process.env.NODE_ENV !== 'production';
+_vue2.default.config.debug = DEBUG;
 
-exports.default = new _vuex2.default.Store({
-    actions: actions,
-    getters: getters,
-    strict: debug
+var store = exports.store = new _vuex2.default.Store({
+    strict: DEBUG,
+    state: {
+        products: [{
+            sku: 'SA419-03X',
+            name: 'Bluzka z wiązaniem z boku',
+            photos: ['http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-001.jpg', 'http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-002.jpg', 'http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-003.jpg'],
+            categoryUrl: '/t-shirts',
+            standardPrice: '39,99',
+            actualPrice: '24,99',
+            description: 'wzrost modelki: 177cm',
+            comingSoon: false,
+            sizes: [{
+                name: 'S',
+                id: 111,
+                stock: false
+            }, {
+                name: 'M',
+                id: 112,
+                stock: true
+            }, {
+                name: 'L',
+                id: 113,
+                stock: false
+            }, {
+                name: 'XL',
+                id: 114,
+                stock: true
+            }]
+        }, {
+            sku: 'SA419-00X',
+            name: 'Bluzka z wiązaniem z boku',
+            photos: ['http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-001.jpg', 'http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-002.jpg', 'http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-003.jpg'],
+            categoryUrl: '/blouses',
+            standardPrice: '29,99',
+            actualPrice: '19,99',
+            description: 'wzrost modelki: 176cm',
+            comingSoon: false,
+            sizes: [{
+                name: 'S',
+                id: 121,
+                stock: true
+            }, {
+                name: 'M',
+                id: 122,
+                stock: true
+            }, {
+                name: 'L',
+                id: 123,
+                stock: true
+            }, {
+                name: 'XL',
+                id: 124,
+                stock: true
+            }]
+        }, {
+            sku: 'SA419-59X',
+            name: 'Bluzka z wiązaniem z boku',
+            photos: ['http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-001.jpg', 'http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-002.jpg', 'http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-003.jpg', 'http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-004.jpg'],
+            categoryUrl: '/t-shirts',
+            standardPrice: '29,99',
+            actualPrice: '29,99',
+            description: 'wzrost modelki: 175cm',
+            comingSoon: false,
+            sizes: [{
+                name: 'S',
+                id: 131,
+                stock: false
+            }, {
+                name: 'M',
+                id: 132,
+                stock: false
+            }, {
+                name: 'L',
+                id: 133,
+                stock: false
+            }, {
+                name: 'XL',
+                id: 134,
+                stock: false
+            }]
+        }],
+        product: {
+            sku: 'SA419-03X',
+            name: 'Bluzka z wiązaniem z boku',
+            currentPhoto: 0,
+            isUpdated: false,
+            photos: ['http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-001.jpg', 'http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-002.jpg', 'http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-003.jpg'],
+            categoryUrl: '/t-shirts',
+            standardPrice: '39,99',
+            actualPrice: '24,99',
+            description: 'wzrost modelki: 177cm',
+            comingSoon: false,
+            sizes: [{
+                name: 'S',
+                id: 111,
+                stock: false,
+                selected: false
+            }, {
+                name: 'M',
+                id: 112,
+                stock: true,
+                selected: false
+            }, {
+                name: 'L',
+                id: 113,
+                stock: false,
+                selected: false
+            }, {
+                name: 'XL',
+                id: 114,
+                stock: true,
+                selected: false
+            }]
+        }
+    },
+    getters: _getters2.default,
+    mutations: _mutations2.default
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
@@ -11322,21 +11396,45 @@ process.umask = function() { return 0; };
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.addToCart = undefined;
-
-var _mutationTypes = __webpack_require__(7);
-
-var types = _interopRequireWildcard(_mutationTypes);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-var addToCart = exports.addToCart = function addToCart(_ref, product) {
-    var commit = _ref.commit;
-
-    if (product.inventory > 0) {
-        commit(types.ADD_TO_CART, {
-            id: product.id
-        });
+exports.default = {
+    getModel: function getModel(state) {
+        return state.product.sku.split('-')[0];
+    },
+    getSku: function getSku(state) {
+        return state.product.sku;
+    },
+    getName: function getName(state) {
+        return state.product.name;
+    },
+    getCurrentPhoto: function getCurrentPhoto(state) {
+        return state.product.currentPhoto;
+    },
+    isUpdated: function isUpdated(state) {
+        return state.product.isUpdated;
+    },
+    getPhotos: function getPhotos(state) {
+        return state.product.photos;
+    },
+    getCategoryUrl: function getCategoryUrl(state) {
+        return state.product.categoryUrl;
+    },
+    getStandardPrice: function getStandardPrice(state) {
+        return state.product.standardPrice;
+    },
+    getActualPrice: function getActualPrice(state) {
+        return state.product.actualPrice;
+    },
+    getDescription: function getDescription(state) {
+        return state.product.description;
+    },
+    getComingSoon: function getComingSoon(state) {
+        return state.product.comingSoon;
+    },
+    getSizes: function getSizes(state) {
+        return state.product.sizes;
+    },
+    hasDiscount: function hasDiscount(state) {
+        return parseInt(state.product.actualPrice) !== parseInt(state.product.standardPrice);
     }
 };
 
@@ -11348,38 +11446,31 @@ var addToCart = exports.addToCart = function addToCart(_ref, product) {
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var ADD_TO_CART = exports.ADD_TO_CART = 'ADD_TO_CART';
-var CHECKOUT_REQUEST = exports.CHECKOUT_REQUEST = 'CHECKOUT_REQUEST';
-var CHECKOUT_SUCCESS = exports.CHECKOUT_SUCCESS = 'CHECKOUT_SUCCESS';
-var CHECKOUT_FAILURE = exports.CHECKOUT_FAILURE = 'CHECKOUT_FAILURE';
-var RECEIVE_PRODUCTS = exports.RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS';
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
     value: true
 });
-var cartProducts = exports.cartProducts = function cartProducts(state) {
-    return state.cart.added.map(function (_ref) {
-        var id = _ref.id,
-            quantity = _ref.quantity;
-
-        var product = state.products.all.find(function (p) {
-            return p.id === id;
+exports.default = {
+    update: function update(state, sku) {
+        var newProduct = state.products.find(function (product) {
+            return product.sku === sku;
         });
-        return {
-            title: product.title,
-            price: product.price,
-            quantity: quantity
+        state.product = {
+            sku: newProduct.sku,
+            name: newProduct.name,
+            currentPhoto: 0,
+            isUpdated: true,
+            photos: newProduct.photos,
+            categoryUrl: newProduct.categoryUrl,
+            standardPrice: newProduct.standardPrice,
+            actualPrice: newProduct.actualPrice,
+            description: newProduct.description,
+            comingSoon: newProduct.comingSoon,
+            sizes: newProduct.sizes,
+            hasDiscount: newProduct.hasDiscount
         };
-    });
+    },
+    selectPhoto: function selectPhoto(state, photoIndex) {
+        state.product.currentPhoto = photoIndex;
+    }
 };
 
 /***/ })

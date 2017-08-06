@@ -21,12 +21,11 @@
                 <!--<button class="next-photo"-->
                         <!--@click="nextPhoto">Następne</button>-->
             </figure>
-            <fieldset id="sliderControls"
-                      class="slider-control-wrapper">
+            <div class="slider__control-wrapper">
                 <template v-if="updated">
                     <input type="radio"
                            name="product-photo"
-                           class="slider-control"
+                           class="slider__control-button"
                            v-for="(photo, index) in photos"
                            :title="productName"
                            :value="index"
@@ -36,129 +35,144 @@
                 <template v-else>
                     <input type="radio"
                            name="product-photo"
-                           class="slider-control"
+                           class="slider__control-button"
                            title="Bluzka z wiązaniem z boku"
                            value="0"
                            checked
                            @change="selectPhoto">
                     <input type="radio"
                            name="product-photo"
-                           class="slider-control"
+                           class="slider__control-button"
                            title="Bluzka z wiązaniem z boku"
                            value="1"
                            @change="selectPhoto">
                     <input type="radio"
                            name="product-photo"
-                           class="slider-control"
+                           class="slider__control-button"
                            title="Bluzka z wiązaniem z boku"
                            value="2"
                            @change="selectPhoto">
                 </template>
-                <button class="btn-default slider-control icon-zoom"></button>
-            </fieldset>
+                <button class="btn--empty btn__icon icon__zoom"></button>
+            </div>
         </article>
-        <article>
-            <nav>
+        <article class="product-page__info">
+            <nav class="product-page__controls">
                 <div>
                     <a href="/t-shirts"
-                       class="back-to-category"
+                       class="btn__arrow-prev"
                        title="Wróć do kategorii"
                        :href="categoryUrl">Wróć do kategorii</a>
                 </div>
                 <div>
-                    <a title="Poprzedni produkt">Poprzedni produkt</a>
-                    <a title="Następny produkt">Następny produkt</a>
+                    <a href="#"
+                       class="btn__arrow-prev"
+                       title="Poprzedni produkt"></a>
+                    <a href="#"
+                       class="btn__arrow-next"
+                       title="Następny produkt"></a>
                 </div>
             </nav>
             <header>
-                <h1 id="productName">Bluzka z wiązaniem z boku</h1>
-                <h2 id="productSku" v-text="sku">SA419-03X</h2>
+                <h1 class="product__title"
+                    v-text="productName">Bluzka z wiązaniem z boku</h1>
+                <h2 class="product__sku"
+                    v-text="sku">SA419-03X</h2>
             </header>
-            <section>
-                <p v-if="newPrice">
-                    <span v-text="newPrice">24,99</span>
+            <section class="product__info">
+                <p :class="[hasDiscount ? 'product__actual-price--discount' : 'product__actual-price']">
+                    <span v-text="actualPrice">24,99</span>
                     <span>PLN</span>
                 </p>
-                <p :class="{ 'new-price': newPrice }">
-                    <span v-text="price">39,99</span>
+                <p class="product__standard-price"
+                   v-if="hasDiscount">
+                    <span v-text="standardPrice">39,99</span>
                     <span>PLN</span>
                 </p>
-                <p v-text="description">wzrost modelki: 177cm</p>
+                <p class="product__description"
+                   v-text="description">wzrost modelki: 177cm</p>
             </section>
-            <fieldset id="colors" data-model="SA419">
+            <fieldset class="product__colors">
                 <legend>Kolor</legend>
-                <input name="color"
-                       class="btn-default"
-                       type="radio"
-                       title="Różowy"
-                       id="03X"
-                       checked
-                       style="background: pink url('http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-999.jpg');"
+                <div class="product__colors__wrapper">
+                    <input name="color"
+                           class="btn--empty product__color"
+                           type="radio"
+                           title="Różowy"
+                           id="03X"
+                           checked
+                           style="background: pink url('http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-999.jpg');"
+                           @change="updateProductInfo">
+                    <input name="color"
+                           class="btn--empty product__color"
+                           type="radio"
+                           title="Biały"
+                           id="00X"
+                           style="background: white url('http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-999.jpg');"
+                           @change="updateProductInfo">
+                    <input name="color"
+                           class="btn--empty product__color"
+                           type="radio"
+                           title="Granatowy"
+                           id="59X"
+                           style="background: navy url('http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-999.jpg');"
                        @change="updateProductInfo">
-                <input name="color"
-                       class="btn-default"
-                       type="radio"
-                       title="Biały"
-                       id="00X"
-                       style="background: white url('http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-999.jpg');"
-                       @change="updateProductInfo">
-                <input name="color"
-                       class="btn-default"
-                       type="radio"
-                       title="Granatowy"
-                       id="59X"
-                       style="background: navy url('http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-999.jpg');"
-                       @change="updateProductInfo">
+                </div>
             </fieldset>
-            <fieldset>
+            <fieldset class="product__sizes">
                 <legend>Rozmiar</legend>
                 <button type="button"
-                        class="btn-default">Tabela rozmiarów</button>
+                        class="btn--default">Tabela rozmiarów</button>
                 <div>
                     <template v-if="updated">
                         <input name="size"
-                               class="btn-default with-label"
+                               class="product__size"
                                type="radio"
                                v-for="size in sizes"
                                :title="size.name"
+                               :value="size.id"
                                :id="'size-' + size.name"
                                :disabled.prop="!size.stock">
                     </template>
                     <template v-else>
                         <input name="size"
-                               class="btn-default with-label"
+                               class="product__size"
                                type="radio"
                                title="S"
+                               value="111"
                                id="size-S"
                                disabled>
                         <input name="size"
-                               class="btn-default with-label"
+                               class="product__size"
                                type="radio"
                                title="M"
+                               value="112"
                                id="size-M">
                         <input name="size"
-                               class="btn-default with-label"
+                               class="product__size"
                                type="radio"
                                title="L"
+                               value="113"
                                id="size-L"
                                disabled>
                         <input name="size"
-                               class="btn-default with-label"
+                               class="product__size"
                                type="radio"
                                title="XL"
+                               value="114"
                                id="size-XL">
                     </template>
                 </div>
             </fieldset>
             <section>
                 <button type="button"
-                        class="btn-default icon-bag">Dodaj do koszyka</button>
+                        class="btn--default btn__icon icon__bag">Dodaj do koszyka</button>
                 <button type="button"
-                        class="btn-default">Powiadom o dostępności</button>
+                        class="btn--default">Powiadom o dostępności</button>
                 <button type="button"
-                        class="btn-default">Dodaj do listy życzeń</button>
+                        class="btn--default">Dodaj do listy życzeń</button>
                 <button type="button"
-                        class="btn-default">Sprawdź dostępność w salonach</button>
+                        class="btn--default">Sprawdź dostępność w salonach</button>
             </section>
             <aside>
                 <details>

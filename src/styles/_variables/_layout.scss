@@ -1,10 +1,21 @@
 // elements
 $mainHeaderHeightMobile: 50px;
-$emptyButtonSize: 1.5rem;
-$iconsOnButtonsSize: 1.5rem;
-$iconsOnEmptyButtonsSize: $iconsOnButtonsSize * .75;
+
+// icons
+$iconOnButtonSize: 1.5em;
+$iconOnEmptyButtonSize: $iconOnButtonSize * .75;
+$iconOnButtonDistanceFromEdge: $iconOnButtonSize * .25;
+
+//buttons
+$buttonEmptySize: 1.5em;
+$buttonWithIconSidePadding: $iconOnButtonSize + 2 * $iconOnButtonDistanceFromEdge;
 
 //spacing
 $standardColumnGutters: 1rem;
-$standardRowGutters: 1.5rem;
-$standardElementPadding: .35rem .5rem;
+$standardRowGutters: 1.2rem;
+$standardElementPaddingVertical: .35rem;
+$standardElementPaddingHorizontal: .5rem;
+$standardElementPadding: $standardElementPaddingVertical $standardElementPaddingHorizontal;
+$standardElementMarginVertical: .35rem;
+$standardElementMarginHorizontal: .5rem;
+$standardElementMargin: $standardElementMarginVertical $standardElementMarginHorizontal;

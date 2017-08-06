@@ -1,16 +1,12 @@
-// product page
-.product-page main {
-    padding-top: $mainHeaderHeightMobile;
+.product-page__info {
+    padding: 0 $standardColumnGutters;
 }
 
-.product-photo {
-    position: relative;
-}
-.back-to-category {
+.product-page__controls {
+    @include flex-wrapper;
+    margin: $standardElementMarginHorizontal 0;
 
-}
-
-// slider
-.slider-control-wrapper {
-    text-align: center;
+    > *:first-child {
+        flex-grow: 1;
+    }
 }
