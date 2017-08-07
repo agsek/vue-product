@@ -9,7 +9,7 @@ export default {
         return state.product.name
     },
     getCurrentPhoto(state) {
-        return state.product.currentPhoto
+        return state.product.currentPhoto || 0
     },
     isUpdated(state) {
         return state.product.isUpdated
@@ -37,5 +37,16 @@ export default {
     },
     hasDiscount(state) {
         return parseInt(state.product.actualPrice) !== parseInt(state.product.standardPrice)
+    },
+    getProduct(state) {
+        return state.product
+    },
+    getProducts(state) {
+        return state.products
+    },
+    getSelectedSize(state) {
+        return state.product.sizes.find(size => {
+            return size.selected
+        }) || {}
     }
 }

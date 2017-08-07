@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/bin";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10146,7 +10146,7 @@ return Vue$3;
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
 /* 1 */
@@ -10969,13 +10969,45 @@ var index_esm = {
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+// Product Page
+var UPDATE_PRODUCT = exports.UPDATE_PRODUCT = 'productpage/update';
+var SELECT_PHOTO = exports.SELECT_PHOTO = 'productpage/selectPhoto';
+var SELECT_SIZE = exports.SELECT_SIZE = 'productpage/selectSize';
+var INJECT_PRODUCTS = exports.INJECT_PRODUCTS = 'productpage/injectProducts';
+
+// Category
+
+// Cart
+
+// Minicart?
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _vue = __webpack_require__(0);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _store = __webpack_require__(4);
+var _productPage = __webpack_require__(5);
+
+var _productPage2 = _interopRequireDefault(_productPage);
 
 var _vuex = __webpack_require__(1);
+
+var _types = __webpack_require__(2);
+
+var types = _interopRequireWildcard(_types);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -10983,9 +11015,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 new _vue2.default({
     el: '#app',
-    store: _store.store,
+    store: _productPage2.default,
     delimiters: ['${', '}'],
-    computed: (0, _vuex.mapGetters)({
+    created: function created() {
+        var products = JSON.parse(document.getElementById('app').dataset.products),
+            product = products.find(function (product) {
+            return product.isActive;
+        });
+        this.$store.commit(types.INJECT_PRODUCTS, products);
+        this.$store.commit(types.UPDATE_PRODUCT, product.sku);
+    },
+
+    computed: _extends({}, (0, _vuex.mapGetters)({
         model: 'getModel',
         sku: 'getSku',
         productName: 'getName',
@@ -10998,23 +11039,25 @@ new _vue2.default({
         description: 'getDescription',
         comingSoon: 'getComingSoon',
         sizes: 'getSizes',
-        hasDiscount: 'hasDiscount'
-    }),
+        hasDiscount: 'hasDiscount',
+        product: 'getProduct',
+        selectedSize: 'getSelectedSize'
+    })),
     methods: {
         updateProductInfo: function updateProductInfo(event) {
-            _store.store.commit('update', this.model + '-' + event.target.id);
+            _productPage2.default.commit(types.UPDATE_PRODUCT, this.model + '-' + event.target.id);
         },
         selectPhoto: function selectPhoto(event) {
-            _store.store.commit('selectPhoto', event.target.value);
+            _productPage2.default.commit(types.SELECT_PHOTO, event.target.value);
         },
         selectSize: function selectSize(event) {
-            _store.store.commit('selectSize', event);
+            _productPage2.default.commit(types.SELECT_SIZE, event.target.value);
         }
     }
 });
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports) {
 
 var g;
@@ -11041,7 +11084,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11050,7 +11093,6 @@ module.exports = g;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.store = undefined;
 
 var _vue = __webpack_require__(0);
 
@@ -11060,11 +11102,11 @@ var _vuex = __webpack_require__(1);
 
 var _vuex2 = _interopRequireDefault(_vuex);
 
-var _getters = __webpack_require__(6);
+var _getters = __webpack_require__(7);
 
 var _getters2 = _interopRequireDefault(_getters);
 
-var _mutations = __webpack_require__(7);
+var _mutations = __webpack_require__(8);
 
 var _mutations2 = _interopRequireDefault(_mutations);
 
@@ -11075,129 +11117,19 @@ _vue2.default.use(_vuex2.default);
 var DEBUG = process.env.NODE_ENV !== 'production';
 _vue2.default.config.debug = DEBUG;
 
-var store = exports.store = new _vuex2.default.Store({
+exports.default = new _vuex2.default.Store({
     strict: DEBUG,
     state: {
-        products: [{
-            sku: 'SA419-03X',
-            name: 'Bluzka z wiązaniem z boku',
-            photos: ['http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-001.jpg', 'http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-002.jpg', 'http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-003.jpg'],
-            categoryUrl: '/t-shirts',
-            standardPrice: '39,99',
-            actualPrice: '24,99',
-            description: 'wzrost modelki: 177cm',
-            comingSoon: false,
-            sizes: [{
-                name: 'S',
-                id: 111,
-                stock: false
-            }, {
-                name: 'M',
-                id: 112,
-                stock: true
-            }, {
-                name: 'L',
-                id: 113,
-                stock: false
-            }, {
-                name: 'XL',
-                id: 114,
-                stock: true
-            }]
-        }, {
-            sku: 'SA419-00X',
-            name: 'Bluzka z wiązaniem z boku',
-            photos: ['http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-001.jpg', 'http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-002.jpg', 'http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-003.jpg'],
-            categoryUrl: '/blouses',
-            standardPrice: '29,99',
-            actualPrice: '19,99',
-            description: 'wzrost modelki: 176cm',
-            comingSoon: false,
-            sizes: [{
-                name: 'S',
-                id: 121,
-                stock: true
-            }, {
-                name: 'M',
-                id: 122,
-                stock: true
-            }, {
-                name: 'L',
-                id: 123,
-                stock: true
-            }, {
-                name: 'XL',
-                id: 124,
-                stock: true
-            }]
-        }, {
-            sku: 'SA419-59X',
-            name: 'Bluzka z wiązaniem z boku',
-            photos: ['http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-001.jpg', 'http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-002.jpg', 'http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-003.jpg', 'http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-004.jpg'],
-            categoryUrl: '/t-shirts',
-            standardPrice: '29,99',
-            actualPrice: '29,99',
-            description: 'wzrost modelki: 175cm',
-            comingSoon: false,
-            sizes: [{
-                name: 'S',
-                id: 131,
-                stock: false
-            }, {
-                name: 'M',
-                id: 132,
-                stock: false
-            }, {
-                name: 'L',
-                id: 133,
-                stock: false
-            }, {
-                name: 'XL',
-                id: 134,
-                stock: false
-            }]
-        }],
-        product: {
-            sku: 'SA419-03X',
-            name: 'Bluzka z wiązaniem z boku',
-            currentPhoto: 0,
-            isUpdated: false,
-            photos: ['http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-001.jpg', 'http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-002.jpg', 'http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-003.jpg'],
-            categoryUrl: '/t-shirts',
-            standardPrice: '39,99',
-            actualPrice: '24,99',
-            description: 'wzrost modelki: 177cm',
-            comingSoon: false,
-            sizes: [{
-                name: 'S',
-                id: 111,
-                stock: false,
-                selected: false
-            }, {
-                name: 'M',
-                id: 112,
-                stock: true,
-                selected: false
-            }, {
-                name: 'L',
-                id: 113,
-                stock: false,
-                selected: false
-            }, {
-                name: 'XL',
-                id: 114,
-                stock: true,
-                selected: false
-            }]
-        }
+        products: [],
+        product: {}
     },
     getters: _getters2.default,
     mutations: _mutations2.default
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -11387,7 +11319,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11407,7 +11339,7 @@ exports.default = {
         return state.product.name;
     },
     getCurrentPhoto: function getCurrentPhoto(state) {
-        return state.product.currentPhoto;
+        return state.product.currentPhoto || 0;
     },
     isUpdated: function isUpdated(state) {
         return state.product.isUpdated;
@@ -11435,11 +11367,25 @@ exports.default = {
     },
     hasDiscount: function hasDiscount(state) {
         return parseInt(state.product.actualPrice) !== parseInt(state.product.standardPrice);
+    },
+    getProduct: function getProduct(state) {
+        return state.product;
+    },
+    getProducts: function getProducts(state) {
+        return state.products;
+    },
+    getSelectedSize: function getSelectedSize(state) {
+        // console.log(state.product.sizes.find(size => {
+        //     return size.selected
+        // }))
+        return state.product.sizes.find(function (size) {
+            return size.selected;
+        }) || {};
     }
 };
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11448,30 +11394,53 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.default = {
-    update: function update(state, sku) {
-        var newProduct = state.products.find(function (product) {
-            return product.sku === sku;
-        });
-        state.product = {
-            sku: newProduct.sku,
-            name: newProduct.name,
-            currentPhoto: 0,
-            isUpdated: true,
-            photos: newProduct.photos,
-            categoryUrl: newProduct.categoryUrl,
-            standardPrice: newProduct.standardPrice,
-            actualPrice: newProduct.actualPrice,
-            description: newProduct.description,
-            comingSoon: newProduct.comingSoon,
-            sizes: newProduct.sizes,
-            hasDiscount: newProduct.hasDiscount
-        };
-    },
-    selectPhoto: function selectPhoto(state, photoIndex) {
-        state.product.currentPhoto = photoIndex;
+
+var _types$UPDATE_PRODUCT;
+
+var _types = __webpack_require__(2);
+
+var types = _interopRequireWildcard(_types);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+exports.default = (_types$UPDATE_PRODUCT = {}, _defineProperty(_types$UPDATE_PRODUCT, types.UPDATE_PRODUCT, function (state, sku) {
+    var newProduct = state.products.find(function (product) {
+        return product.sku === sku;
+    });
+
+    state.product = {
+        sku: newProduct.sku,
+        name: newProduct.name,
+        currentPhoto: 0,
+        isUpdated: true,
+        photos: newProduct.photos,
+        categoryUrl: newProduct.categoryUrl,
+        standardPrice: newProduct.standardPrice,
+        actualPrice: newProduct.actualPrice,
+        description: newProduct.description,
+        comingSoon: newProduct.comingSoon,
+        sizes: newProduct.sizes
+    };
+}), _defineProperty(_types$UPDATE_PRODUCT, types.SELECT_PHOTO, function (state, photoIndex) {
+    state.product.currentPhoto = photoIndex;
+}), _defineProperty(_types$UPDATE_PRODUCT, types.INJECT_PRODUCTS, function (state, products) {
+    state.products = products;
+}), _defineProperty(_types$UPDATE_PRODUCT, types.SELECT_SIZE, function (state, productId) {
+    var size = state.product.sizes.find(function (size) {
+        return size.id === parseInt(productId);
+    });
+    if (!size) {
+        return false;
     }
-};
+    size.selected = true;
+    console.log(size.id);
+}), _defineProperty(_types$UPDATE_PRODUCT, 'deselectSize', function deselectSize(state) {
+    state.product.sizes.find(function (size) {
+        return size.selected;
+    }).selected = false;
+}), _types$UPDATE_PRODUCT);
 
 /***/ })
 /******/ ]);

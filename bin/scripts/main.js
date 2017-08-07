@@ -1,39 +1,86 @@
 import Vue from 'vue'
-import { store } from './store/store'
+import store from './store/productPage'
 import { mapGetters } from 'vuex'
+import * as types from './store/types'
 //import '../styles/main.scss'
 
 new Vue({
     el: '#app',
     store,
     delimiters: ['${', '}'],
-    computed: mapGetters({
-        model: 'getModel',
-        sku: 'getSku',
-        productName: 'getName',
-        currentPhoto: 'getCurrentPhoto',
-        updated: 'isUpdated',
-        photos: 'getPhotos',
-        categoryUrl: 'getCategoryUrl',
-        standardPrice: 'getStandardPrice',
-        actualPrice: 'getActualPrice',
-        description: 'getDescription',
-        comingSoon: 'getComingSoon',
-        sizes: 'getSizes',
-        hasDiscount: 'hasDiscount'
-    }),
+    created() {
+        let products = JSON.parse(document.getElementById('app').dataset.products),
+            product = products.find(product => {
+                return product.isActive
+            })
+        this.$store.commit(types.INJECT_PRODUCTS, products)
+        this.$store.commit(types.UPDATE_PRODUCT, product.sku)
+    },
+    computed: {
+        selectedSize() {
+            return this.sizes.find(size => {
+                return size.selected
+            }) || {}
+        },
+        ...mapGetters({
+            model: 'getModel',
+            sku: 'getSku',
+            productName: 'getName',
+            currentPhoto: 'getCurrentPhoto',
+            updated: 'isUpdated',
+            photos: 'getPhotos',
+            categoryUrl: 'getCategoryUrl',
+            standardPrice: 'getStandardPrice',
+            actualPrice: 'getActualPrice',
+            description: 'getDescription',
+            comingSoon: 'getComingSoon',
+            sizes: 'getSizes',
+            hasDiscount: 'hasDiscount',
+            product: 'getProduct'
+        })
+    },
     methods: {
         updateProductInfo(event) {
-            store.commit('update', this.model + '-' + event.target.id);
+            store.commit(types.UPDATE_PRODUCT, this.model + '-' + event.target.id);
         },
         selectPhoto(event) {
-            store.commit('selectPhoto', event.target.value);
+            store.commit(types.SELECT_PHOTO, event.target.value);
         },
         selectSize(event) {
             store.commit('selectSize', event)
         }
     }
 });
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+import getters from './productPage/getters'
+import mutations from './productPage/mutations'
+
+Vue.use(Vuex)
+
+const DEBUG = process.env.NODE_ENV !== 'production'
+Vue.config.debug = DEBUG
+
+export default new Vuex.Store({
+    strict: DEBUG,
+    state: {
+        products: [],
+        product: {}
+    },
+    getters,
+    mutations
+})
+// Product Page
+export const UPDATE_PRODUCT = 'productpage/update'
+export const SELECT_PHOTO = 'productpage/selectPhoto'
+export const INJECT_PRODUCTS = 'productpage/injectProducts'
+
+// Category
+
+// Cart
+
+// Minicart?
 export default {
     getModel(state) {
         return state.product.sku.split('-')[0]
@@ -45,7 +92,7 @@ export default {
         return state.product.name
     },
     getCurrentPhoto(state) {
-        return state.product.currentPhoto
+        return state.product.currentPhoto || 0
     },
     isUpdated(state) {
         return state.product.isUpdated
@@ -73,13 +120,22 @@ export default {
     },
     hasDiscount(state) {
         return parseInt(state.product.actualPrice) !== parseInt(state.product.standardPrice)
+    },
+    getProduct(state) {
+        return state.product
+    },
+    getProducts(state) {
+        return state.products
     }
 }
+import * as types from '../types'
+
 export default {
-    update(state, sku) {
+    [types.UPDATE_PRODUCT](state, sku) {
         const newProduct = state.products.find(product => {
             return product.sku === sku
         })
+
         state.product = {
             sku: newProduct.sku,
             name: newProduct.name,
@@ -91,182 +147,13 @@ export default {
             actualPrice: newProduct.actualPrice,
             description: newProduct.description,
             comingSoon: newProduct.comingSoon,
-            sizes: newProduct.sizes,
-            hasDiscount: newProduct.hasDiscount
+            sizes: newProduct.sizes
         }
     },
-    selectPhoto(state, photoIndex) {
+    [types.SELECT_PHOTO](state, photoIndex) {
         state.product.currentPhoto = photoIndex
+    },
+    [types.INJECT_PRODUCTS](state, products) {
+        state.products = products
     }
 }
-import Vue from 'vue'
-import Vuex from 'vuex'
-
-import getters from './getters'
-import mutations from './mutations'
-
-Vue.use(Vuex)
-
-const DEBUG = process.env.NODE_ENV !== 'production'
-Vue.config.debug = DEBUG
-
-export const store = new Vuex.Store({
-    strict: DEBUG,
-    state: {
-        products: [
-            {
-                sku: 'SA419-03X',
-                name: 'Bluzka z wiązaniem z boku',
-                photos: [
-                    'http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-001.jpg',
-                    'http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-002.jpg',
-                    'http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-003.jpg'
-                ],
-                categoryUrl: '/t-shirts',
-                standardPrice: '39,99',
-                actualPrice: '24,99',
-                description: 'wzrost modelki: 177cm',
-                comingSoon: false,
-                sizes: [
-                    {
-                        name: 'S',
-                        id: 111,
-                        stock: false
-                    },
-                    {
-                        name: 'M',
-                        id: 112,
-                        stock: true
-                    },
-                    {
-                        name: 'L',
-                        id: 113,
-                        stock: false
-                    },
-                    {
-                        name: 'XL',
-                        id: 114,
-                        stock: true
-                    }
-                ]
-            },
-            {
-                sku: 'SA419-00X',
-                name: 'Bluzka z wiązaniem z boku',
-                photos: [
-                    'http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-001.jpg',
-                    'http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-002.jpg',
-                    'http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-003.jpg'
-                ],
-                categoryUrl: '/blouses',
-                standardPrice: '29,99',
-                actualPrice: '19,99',
-                description: 'wzrost modelki: 176cm',
-                comingSoon: false,
-                sizes: [
-                    {
-                        name: 'S',
-                        id: 121,
-                        stock: true
-                    },
-                    {
-                        name: 'M',
-                        id: 122,
-                        stock: true
-                    },
-                    {
-                        name: 'L',
-                        id: 123,
-                        stock: true
-                    },
-                    {
-                        name: 'XL',
-                        id: 124,
-                        stock: true
-                    }
-                ]
-            },
-            {
-                sku: 'SA419-59X',
-                name: 'Bluzka z wiązaniem z boku',
-                photos: [
-                    'http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-001.jpg',
-                    'http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-002.jpg',
-                    'http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-003.jpg',
-                    'http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-004.jpg'
-                ],
-                categoryUrl: '/t-shirts',
-                standardPrice: '29,99',
-                actualPrice: '29,99',
-                description: 'wzrost modelki: 175cm',
-                comingSoon: false,
-                sizes: [
-                    {
-                        name: 'S',
-                        id: 131,
-                        stock: false
-                    },
-                    {
-                        name: 'M',
-                        id: 132,
-                        stock: false
-                    },
-                    {
-                        name: 'L',
-                        id: 133,
-                        stock: false
-                    },
-                    {
-                        name: 'XL',
-                        id: 134,
-                        stock: false
-                    }
-                ]
-            }
-        ],
-        product: {
-            sku: 'SA419-03X',
-            name: 'Bluzka z wiązaniem z boku',
-            currentPhoto: 0,
-            isUpdated: false,
-            photos: [
-                'http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-001.jpg',
-                'http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-002.jpg',
-                'http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-003.jpg'
-            ],
-            categoryUrl: '/t-shirts',
-            standardPrice: '39,99',
-            actualPrice: '24,99',
-            description: 'wzrost modelki: 177cm',
-            comingSoon: false,
-            sizes: [
-                {
-                    name: 'S',
-                    id: 111,
-                    stock: false,
-                    selected: false
-                },
-                {
-                    name: 'M',
-                    id: 112,
-                    stock: true,
-                    selected: false
-                },
-                {
-                    name: 'L',
-                    id: 113,
-                    stock: false,
-                    selected: false
-                },
-                {
-                    name: 'XL',
-                    id: 114,
-                    stock: true,
-                    selected: false
-                }
-            ]
-        },
-    },
-    getters,
-    mutations
-})

@@ -1,95 +1,126 @@
 [
     {
-        "SA419-03X": {
-            "photos": [
-                "http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-001.jpg",
-                "http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-002.jpg",
-                "http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-003.jpg"
-            ],
-            "categoryUrl": "/t-shirts",
-            "price": "39,99",
-            "newPrice": "24,99",
-            "description": "wzrost modelki: 177cm",
-            "comingSoon": false,
-            "sizes": [
-                {
-                    "name": "S",
-                    "stock": 0
-                },
-                {
-                    "name": "M",
-                    "stock": 10
-                },
-                {
-                    "name": "L",
-                    "stock": 0
-                },
-                {
-                    "name": "XL",
-                    "stock": 10
-                }
-            ]
-        },
-        "SA419-00X": {
-            "photos": [
-                "http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-001.jpg",
-                "http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-002.jpg",
-                "http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-003.jpg"
-            ],
-            "categoryUrl": "/blouses",
-            "price": "29,99",
-            "newPrice": "19,99",
-            "description": "wzrost modelki: 176cm",
-            "comingSoon": false,
-            "sizes": [
-                {
-                    "name": "S",
-                    "stock": 10
-                },
-                {
-                    "name": "M",
-                    "stock": 10
-                },
-                {
-                    "name": "L",
-                    "stock": 10
-                },
-                {
-                    "name": "XL",
-                    "stock": 10
-                }
-            ]
-        },
-        "SA419-59X": {
-            "photos": [
-                "http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-001.jpg",
-                "http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-002.jpg",
-                "http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-003.jpg",
-                "http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-004.jpg"
-            ],
-            "categoryUrl": "/t-shirts",
-            "price": "29,99",
-            "newPrice": null,
-            "description": "wzrost modelki: 175cm",
-            "comingSoon": false,
-            "sizes": [
-                {
-                    "name": "S",
-                    "stock": 0
-                },
-                {
-                    "name": "M",
-                    "stock": 0
-                },
-                {
-                    "name": "L",
-                    "stock": 0
-                },
-                {
-                    "name": "XL",
-                    "stock": 0
-                }
-            ]
-        }
+        "sku": "SA419-03X",
+        "name": "aaa Bluzka z wiązaniem z boku",
+        "photos": [
+            "http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-001.jpg",
+            "http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-002.jpg",
+            "http://s0.reserved.com/media/catalog/product/S/A/SA419-03X-003.jpg"
+        ],
+        "categoryUrl": "/t-shirts",
+        "standardPrice": "39,99",
+        "actualPrice": "24,99",
+        "description": "wzrost modelki: 177cm",
+        "comingSoon": false,
+        "isActive": true,
+        "sizes": [
+            {
+                "name": "S",
+                "id": 111,
+                "stock": false,
+                "selected": false
+            },
+            {
+                "name": "M",
+                "id": 112,
+                "stock": true,
+                "selected": true
+            },
+            {
+                "name": "L",
+                "id": 113,
+                "stock": false,
+                "selected": false
+            },
+            {
+                "name": "XL",
+                "id": 114,
+                "stock": true,
+                "selected": false
+            }
+        ]
+    },
+    {
+        "sku": "SA419-00X",
+        "name": "Bluzka z wiązaniem z boku",
+        "photos": [
+            "http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-001.jpg",
+            "http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-002.jpg",
+            "http://s0.reserved.com/media/catalog/product/S/A/SA419-00X-003.jpg"
+        ],
+        "categoryUrl": "/blouses",
+        "standardPrice": "29,99",
+        "actualPrice": "19,99",
+        "description": "wzrost modelki: 176cm",
+        "comingSoon": false,
+        "isActive": false,
+        "sizes": [
+            {
+                "name": "S",
+                "id": 121,
+                "stock": true,
+                "selected": false
+            },
+            {
+                "name": "M",
+                "id": 122,
+                "stock": true,
+                "selected": false
+            },
+            {
+                "name": "L",
+                "id": 123,
+                "stock": true,
+                "selected": false
+            },
+            {
+                "name": "XL",
+                "id": 124,
+                "stock": true,
+                "selected": false
+            }
+        ]
+    },
+    {
+        "sku": "SA419-59X",
+        "name": "Bluzka z wiązaniem z boku",
+        "photos": [
+            "http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-001.jpg",
+            "http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-002.jpg",
+            "http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-003.jpg",
+            "http://s0.reserved.com/media/catalog/product/S/A/SA419-59X-004.jpg"
+        ],
+        "categoryUrl": "/t-shirts",
+        "standardPrice": "29,99",
+        "actualPrice": "29,99",
+        "description": "wzrost modelki: 175cm",
+        "comingSoon": true,
+        "isActive": false,
+        "sizes": [
+            {
+                "name": "S",
+                "id": 131,
+                "stock": false,
+                "selected": false
+            },
+            {
+                "name": "M",
+                "id": 132,
+                "stock": false,
+                "selected": false
+            },
+            {
+                "name": "L",
+                "id": 133,
+                "stock": false,
+                "selected": false
+            },
+            {
+                "name": "XL",
+                "id": 134,
+                "stock": false,
+                "selected": false
+            }
+        ]
     }
 ]

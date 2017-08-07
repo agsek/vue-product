@@ -92,10 +92,6 @@
     height: $buttonEmptySize;
     margin: $standardElementMargin;
     background-color: $buttonEmptyBackgroundColor;
-
-    &:first-child {
-        margin-left: 0;
-    }
 }
 
 %btn__arrow {

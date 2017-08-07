@@ -14,20 +14,28 @@ $fontSizePrice: 1.5em;
     margin-top: $standardElementMarginHorizontal;
 }
 
+%product__price {
+    display: inline-flex;
+}
+
 .product__actual-price {
+    @extend %product__price;
     font-size: $fontSizePrice;
     color: $mainTextColorDark;
 }
 
 .product__actual-price--discount {
+    @extend %product__price;
     font-size: $fontSizePrice;
     color: $discountPriceColor;
 }
 
 .product__standard-price {
+    @extend %product__price;
     font-size: $fontSizeSmall;
     text-decoration: line-through;
     color: $mainTextColorDark;
+    padding-left: $standardElementPaddingHorizontal;
 }
 
 .product__description {
@@ -49,7 +57,12 @@ $fontSizePrice: 1.5em;
 }
 
 .product__color {
+    @extend %btn--empty;
     box-shadow: 0 0 0 1px $mainBorderColorDark;
+
+    &:first-child {
+        margin-left: 0;
+    }
 
     &:checked:after {
         content: '';
@@ -58,11 +71,21 @@ $fontSizePrice: 1.5em;
     }
 }
 
+%product__size,
 .product__size {
     @extend %btn--empty;
     position: relative;
     width: auto;
     min-width: $buttonEmptySize;
+    color: $mainTextColor;
+
+    &:first-child {
+        margin-left: 0;
+    }
+
+    &:checked {
+        box-shadow: 0 0 0 1px $mainBorderColorDark;
+    }
 
     &:after {
         margin: auto;
@@ -71,4 +94,9 @@ $fontSizePrice: 1.5em;
         line-height: $buttonEmptySize;
         font-size: .6em;
     }
+}
+
+.product__size--disabled {
+    @extend %product__size;
+    text-decoration: line-through;
 }
