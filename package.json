@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "karma start --single-run --no-auto-watch karma.conf.js",
     "kss": "kss --config kss-config.json",
     "build": "webpack-dev-server",
     "build:prod": "webpack -p"
@@ -41,6 +41,7 @@
     "karma-chrome-launcher": "^2.2.0",
     "karma-mocha": "^1.3.0",
     "karma-sinon": "^1.0.5",
+    "karma-webpack": "^2.0.4",
     "kss": "^3.0.0-beta.18",
     "michelangelo": "^0.6.1",
     "mocha": "^3.5.0",

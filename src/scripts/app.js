@@ -16,25 +16,23 @@ new Vue({
         this.$store.commit(types.INJECT_PRODUCTS, products)
         this.$store.commit(types.UPDATE_PRODUCT, product.sku)
     },
-    computed: {
-        ...mapGetters({
-            model: 'getModel',
-            sku: 'getSku',
-            productName: 'getName',
-            currentPhoto: 'getCurrentPhoto',
-            updated: 'isUpdated',
-            photos: 'getPhotos',
-            categoryUrl: 'getCategoryUrl',
-            standardPrice: 'getStandardPrice',
-            actualPrice: 'getActualPrice',
-            description: 'getDescription',
-            comingSoon: 'getComingSoon',
-            sizes: 'getSizes',
-            hasDiscount: 'hasDiscount',
-            product: 'getProduct',
-            selectedSize: 'getSelectedSize'
-        })
-    },
+    computed: mapGetters({
+        model: 'getModel',
+        sku: 'getSku',
+        productName: 'getName',
+        currentPhoto: 'getCurrentPhoto',
+        updated: 'isUpdated',
+        photos: 'getPhotos',
+        categoryUrl: 'getCategoryUrl',
+        standardPrice: 'getStandardPrice',
+        actualPrice: 'getActualPrice',
+        description: 'getDescription',
+        comingSoon: 'getComingSoon',
+        sizes: 'getSizes',
+        hasDiscount: 'hasDiscount',
+        product: 'getProduct',
+        selectedSize: 'getSelectedSize'
+    }),
     methods: {
         updateProductInfo(event) {
             store.commit(types.UPDATE_PRODUCT, this.model + '-' + event.target.id);

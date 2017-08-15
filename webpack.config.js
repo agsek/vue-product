@@ -39,7 +39,8 @@ module.exports = {
     ],
     resolve: {
         alias: {
-            vue: 'vue/dist/vue.js'
+            vue: 'vue/dist/vue.js',
+            src: path.join(__dirname, 'src')
         }
     }
 };

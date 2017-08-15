@@ -10153,12 +10153,11 @@ return Vue$3;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Store", function() { return Store; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapState", function() { return mapState; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapMutations", function() { return mapMutations; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapGetters", function() { return mapGetters; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapActions", function() { return mapActions; });
+/* unused harmony export Store */
+/* unused harmony export mapState */
+/* unused harmony export mapMutations */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return mapGetters; });
+/* unused harmony export mapActions */
 /**
  * vuex v2.3.0
  * (c) 2017 Evan You
@@ -10959,24 +10958,27 @@ var index_esm = {
   mapActions: mapActions
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (index_esm);
+/* harmony default export */ __webpack_exports__["a"] = (index_esm);
 
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 // Product Page
-var UPDATE_PRODUCT = exports.UPDATE_PRODUCT = 'productpage/update';
-var SELECT_PHOTO = exports.SELECT_PHOTO = 'productpage/selectPhoto';
-var SELECT_SIZE = exports.SELECT_SIZE = 'productpage/selectSize';
-var INJECT_PRODUCTS = exports.INJECT_PRODUCTS = 'productpage/injectProducts';
+const UPDATE_PRODUCT = 'productpage/update'
+/* harmony export (immutable) */ __webpack_exports__["d"] = UPDATE_PRODUCT;
+
+const SELECT_PHOTO = 'productpage/selectPhoto'
+/* harmony export (immutable) */ __webpack_exports__["b"] = SELECT_PHOTO;
+
+const SELECT_SIZE = 'productpage/selectSize'
+/* harmony export (immutable) */ __webpack_exports__["c"] = SELECT_SIZE;
+
+const INJECT_PRODUCTS = 'productpage/injectProducts'
+/* harmony export (immutable) */ __webpack_exports__["a"] = INJECT_PRODUCTS;
+
 
 // Category
 
@@ -10986,47 +10988,34 @@ var INJECT_PRODUCTS = exports.INJECT_PRODUCTS = 'productpage/injectProducts';
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store_productPage__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__store_types__ = __webpack_require__(2);
 
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _vue = __webpack_require__(0);
-
-var _vue2 = _interopRequireDefault(_vue);
-
-var _productPage = __webpack_require__(5);
-
-var _productPage2 = _interopRequireDefault(_productPage);
-
-var _vuex = __webpack_require__(1);
-
-var _types = __webpack_require__(2);
-
-var types = _interopRequireWildcard(_types);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //import '../styles/main.scss'
 
-new _vue2.default({
+new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     el: '#app',
-    store: _productPage2.default,
+    store: __WEBPACK_IMPORTED_MODULE_1__store_productPage__["a" /* default */],
     delimiters: ['${', '}'],
-    created: function created() {
-        var products = JSON.parse(document.getElementById('app').dataset.products),
-            product = products.find(function (product) {
-            return product.isActive;
-        });
-        this.$store.commit(types.INJECT_PRODUCTS, products);
-        this.$store.commit(types.UPDATE_PRODUCT, product.sku);
+    created() {
+        let products = JSON.parse(document.getElementById('app').dataset.products),
+            product = products.find(product => {
+                return product.isActive
+            })
+        this.$store.commit(__WEBPACK_IMPORTED_MODULE_3__store_types__["a" /* INJECT_PRODUCTS */], products)
+        this.$store.commit(__WEBPACK_IMPORTED_MODULE_3__store_types__["d" /* UPDATE_PRODUCT */], product.sku)
     },
-
-    computed: _extends({}, (0, _vuex.mapGetters)({
+    computed: Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapGetters */])({
         model: 'getModel',
         sku: 'getSku',
         productName: 'getName',
@@ -11042,16 +11031,16 @@ new _vue2.default({
         hasDiscount: 'hasDiscount',
         product: 'getProduct',
         selectedSize: 'getSelectedSize'
-    })),
+    }),
     methods: {
-        updateProductInfo: function updateProductInfo(event) {
-            _productPage2.default.commit(types.UPDATE_PRODUCT, this.model + '-' + event.target.id);
+        updateProductInfo(event) {
+            __WEBPACK_IMPORTED_MODULE_1__store_productPage__["a" /* default */].commit(__WEBPACK_IMPORTED_MODULE_3__store_types__["d" /* UPDATE_PRODUCT */], this.model + '-' + event.target.id);
         },
-        selectPhoto: function selectPhoto(event) {
-            _productPage2.default.commit(types.SELECT_PHOTO, event.target.value);
+        selectPhoto(event) {
+            __WEBPACK_IMPORTED_MODULE_1__store_productPage__["a" /* default */].commit(__WEBPACK_IMPORTED_MODULE_3__store_types__["b" /* SELECT_PHOTO */], event.target.value);
         },
-        selectSize: function selectSize(event) {
-            _productPage2.default.commit(types.SELECT_SIZE, event.target.value);
+        selectSize(event) {
+            __WEBPACK_IMPORTED_MODULE_1__store_productPage__["a" /* default */].commit(__WEBPACK_IMPORTED_MODULE_3__store_types__["c" /* SELECT_SIZE */], event.target.value)
         }
     }
 });
@@ -11085,48 +11074,35 @@ module.exports = g;
 
 /***/ }),
 /* 5 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__productPage_getters__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__productPage_mutations__ = __webpack_require__(8);
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
 
-var _vue = __webpack_require__(0);
 
-var _vue2 = _interopRequireDefault(_vue);
 
-var _vuex = __webpack_require__(1);
 
-var _vuex2 = _interopRequireDefault(_vuex);
 
-var _getters = __webpack_require__(7);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */])
 
-var _getters2 = _interopRequireDefault(_getters);
+const DEBUG = process.env.NODE_ENV !== 'production'
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.debug = DEBUG
 
-var _mutations = __webpack_require__(8);
-
-var _mutations2 = _interopRequireDefault(_mutations);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_vue2.default.use(_vuex2.default);
-
-var DEBUG = process.env.NODE_ENV !== 'production';
-_vue2.default.config.debug = DEBUG;
-
-exports.default = new _vuex2.default.Store({
+/* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     strict: DEBUG,
     state: {
         products: [],
         product: {}
     },
-    getters: _getters2.default,
-    mutations: _mutations2.default
-});
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+    getters: __WEBPACK_IMPORTED_MODULE_2__productPage_getters__["a" /* default */],
+    mutations: __WEBPACK_IMPORTED_MODULE_3__productPage_mutations__["a" /* default */]
+}));
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(6)))
 
 /***/ }),
 /* 6 */
@@ -11320,127 +11296,78 @@ process.umask = function() { return 0; };
 
 /***/ }),
 /* 7 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
+/* harmony default export */ __webpack_exports__["a"] = ({
+    getModel: state => state.product.sku.split('-')[0],
+    getSku: state => state.product.sku,
+    getName: state => state.product.name,
+    getCurrentPhoto: state => state.product.currentPhoto || 0,
+    isUpdated: state => state.product.isUpdated,
+    getPhotos: state => state.product.photos,
+    getCategoryUrl: state => state.product.categoryUrl,
+    getStandardPrice: state => state.product.standardPrice,
+    getActualPrice: state => state.product.actualPrice,
+    getDescription: state => state.product.description,
+    getComingSoon: state => state.product.comingSoon,
+    getSizes: state => state.product.sizes,
+    hasDiscount: state => parseInt(state.product.actualPrice) !== parseInt(state.product.standardPrice),
+    getProduct: state => state.product,
+    getProducts: state => state.products,
+    getSelectedSize: state => state.product.sizes.find(size => size.selected) || {}
 });
-exports.default = {
-    getModel: function getModel(state) {
-        return state.product.sku.split('-')[0];
-    },
-    getSku: function getSku(state) {
-        return state.product.sku;
-    },
-    getName: function getName(state) {
-        return state.product.name;
-    },
-    getCurrentPhoto: function getCurrentPhoto(state) {
-        return state.product.currentPhoto || 0;
-    },
-    isUpdated: function isUpdated(state) {
-        return state.product.isUpdated;
-    },
-    getPhotos: function getPhotos(state) {
-        return state.product.photos;
-    },
-    getCategoryUrl: function getCategoryUrl(state) {
-        return state.product.categoryUrl;
-    },
-    getStandardPrice: function getStandardPrice(state) {
-        return state.product.standardPrice;
-    },
-    getActualPrice: function getActualPrice(state) {
-        return state.product.actualPrice;
-    },
-    getDescription: function getDescription(state) {
-        return state.product.description;
-    },
-    getComingSoon: function getComingSoon(state) {
-        return state.product.comingSoon;
-    },
-    getSizes: function getSizes(state) {
-        return state.product.sizes;
-    },
-    hasDiscount: function hasDiscount(state) {
-        return parseInt(state.product.actualPrice) !== parseInt(state.product.standardPrice);
-    },
-    getProduct: function getProduct(state) {
-        return state.product;
-    },
-    getProducts: function getProducts(state) {
-        return state.products;
-    },
-    getSelectedSize: function getSelectedSize(state) {
-        // console.log(state.product.sizes.find(size => {
-        //     return size.selected
-        // }))
-        return state.product.sizes.find(function (size) {
-            return size.selected;
-        }) || {};
-    }
-};
 
 /***/ }),
 /* 8 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types__ = __webpack_require__(2);
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
+/* harmony default export */ __webpack_exports__["a"] = ({
+    [__WEBPACK_IMPORTED_MODULE_0__types__["d" /* UPDATE_PRODUCT */]](state, sku) {
+        const newProduct = state.products.find(product => {
+            return product.sku === sku
+        })
 
-var _types$UPDATE_PRODUCT;
-
-var _types = __webpack_require__(2);
-
-var types = _interopRequireWildcard(_types);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-exports.default = (_types$UPDATE_PRODUCT = {}, _defineProperty(_types$UPDATE_PRODUCT, types.UPDATE_PRODUCT, function (state, sku) {
-    var newProduct = state.products.find(function (product) {
-        return product.sku === sku;
-    });
-
-    state.product = {
-        sku: newProduct.sku,
-        name: newProduct.name,
-        currentPhoto: 0,
-        isUpdated: true,
-        photos: newProduct.photos,
-        categoryUrl: newProduct.categoryUrl,
-        standardPrice: newProduct.standardPrice,
-        actualPrice: newProduct.actualPrice,
-        description: newProduct.description,
-        comingSoon: newProduct.comingSoon,
-        sizes: newProduct.sizes
-    };
-}), _defineProperty(_types$UPDATE_PRODUCT, types.SELECT_PHOTO, function (state, photoIndex) {
-    state.product.currentPhoto = photoIndex;
-}), _defineProperty(_types$UPDATE_PRODUCT, types.INJECT_PRODUCTS, function (state, products) {
-    state.products = products;
-}), _defineProperty(_types$UPDATE_PRODUCT, types.SELECT_SIZE, function (state, productId) {
-    var size = state.product.sizes.find(function (size) {
-        return size.id === parseInt(productId);
-    });
-    if (!size) {
-        return false;
+        state.product = {
+            sku: newProduct.sku,
+            name: newProduct.name,
+            currentPhoto: 0,
+            isUpdated: true,
+            photos: newProduct.photos,
+            categoryUrl: newProduct.categoryUrl,
+            standardPrice: newProduct.standardPrice,
+            actualPrice: newProduct.actualPrice,
+            description: newProduct.description,
+            comingSoon: newProduct.comingSoon,
+            sizes: newProduct.sizes
+        }
+    },
+    [__WEBPACK_IMPORTED_MODULE_0__types__["b" /* SELECT_PHOTO */]](state, photoIndex) {
+        state.product.currentPhoto = photoIndex
+    },
+    [__WEBPACK_IMPORTED_MODULE_0__types__["a" /* INJECT_PRODUCTS */]](state, products) {
+        state.products = products
+    },
+    [__WEBPACK_IMPORTED_MODULE_0__types__["c" /* SELECT_SIZE */]](state, productId) {
+        let size = state.product.sizes.find(size => {
+            return size.id === parseInt(productId)
+        })
+        if (!size) {
+            return false
+        }
+        size.selected = true
+        console.log(size.id)
+    },
+    deselectSize(state) {
+        state.product.sizes.find(size => {
+            return size.selected
+        }).selected = false
     }
-    size.selected = true;
-    console.log(size.id);
-}), _defineProperty(_types$UPDATE_PRODUCT, 'deselectSize', function deselectSize(state) {
-    state.product.sizes.find(function (size) {
-        return size.selected;
-    }).selected = false;
-}), _types$UPDATE_PRODUCT);
+});
 
 /***/ })
 /******/ ]);
